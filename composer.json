@@ -1,0 +1,23 @@
+{
+  "name": "andrewbreksa/unicorn",
+  "description": "",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Andrew Breksa",
+      "email": "andrew@andrwebreksa.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Unicorn\\": "./src/Unicorn"
+    }
+  },
+  "require": {
+    "league/event": "2.1.2",
+    "league/container": "2.2.0",
+    "league/route": "2.0.1",
+    "zendframework/zend-diactoros": "^1.3"
+  }
+}
