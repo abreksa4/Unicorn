@@ -66,7 +66,7 @@ class Application {
 		return $this->container;
 	}
 
-	public function bootstrap() {
+	private function bootstrap() {
 		$this->eventEmitter->emit(self::EVENT_BOOTSTRAP, $this);
 		$this->getContainer()->share('response', \Zend\Diactoros\Response::class);
 		$this->getContainer()->share('request', function () {
@@ -81,7 +81,6 @@ class Application {
 	}
 
 	public function run() {
-		$this->bootstrap();
 		$this->dispatch();
 		$this->render();
 		$this->finish();
