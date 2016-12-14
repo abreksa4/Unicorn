@@ -8,7 +8,7 @@ of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http:/
 Still in it's infancy, Unicorn was born from my frustrations of wanting a framework to handle the plumbing for me, but
 not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
 
-- Want to build a "slim-esque" closure application? Easy. 
+- Want to build a closure application? Easy. 
 - Want to build a PSR-7 middleware app? Use your own pipeline implementation. 
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
