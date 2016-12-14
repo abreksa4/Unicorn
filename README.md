@@ -1,5 +1,5 @@
 # Unicorn
-_A single class PSR-7 web application "framework"_
+_A tiny PSR-7 web application "framework"_
 
 Unicorn is essentially a wrapper around [zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple 
 of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http://event.thephpleague.com/2.0/), 
