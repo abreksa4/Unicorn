@@ -56,7 +56,7 @@ convention and do whatever you please.
 Unicorn uses [league/container](http://container.thephpleague.com/), which follows the 
 [container-interop](https://github.com/container-interop/container-interop) standard. All of the 
 `Application::getInstance()->get*()` objects are also available via the container 
-(`Application::getInstance()->getContainer()`) except the container itself, as Unicorn registers itself as a delegate.
+(`Application::getInstance()->getContainer()`) except the container itself and `data`, as Unicorn registers itself as a delegate.
 
 ## Conclusion
 Unicorn is supposed to do just about nothing, or in short, everything you should need for any PHP web application. If 
