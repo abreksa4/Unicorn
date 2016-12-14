@@ -1,4 +1,4 @@
 <?php
 require_once(__DIR__ . '/../vendor/autoload.php');
-$app = new Unicorn\App\Application();
+$app = \Unicorn\App\Application::getInstance();
 $app->run();
