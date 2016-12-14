@@ -30,7 +30,7 @@ a basic app. (And I mean basic).
 _As defined in \Unicorn\App\Application_
 ```
 	const EVENT_BOOTSTRAP = 'app.bootstrap';
-	const EVENT_DISPATCH = 'app.delegate';
+	const EVENT_DISPATCH = 'app.dispatch';
 	const EVENT_ROUTE_EXCEPTION = 'app.route.exception';
 	const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';
 	const EVENT_RENDER = 'app.render';
