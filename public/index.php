@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../vendor/autoload.php');
 //Create the App
-$app = new Unicorn\App\Application();
+$app = \Unicorn\App\Application::getInstance();
 
 //add our GET:/ route
 $app->getRouteCollection()->map('GET', '/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
@@ -19,6 +19,15 @@ $app->getEventEmitter()->addListener(\Unicorn\App\Application::EVENT_ROUTE_EXCEP
 	$response = $response->withStatus(404, 'Not Found');
 	return $response;
 });
-
+\Unicorn\Helpers\ConfiguredRoutes::bootstrapRoutes($app, [
+	'index' => [
+		'method' => 'GET',
+		'route' => '/config-routes',
+		'handler' => function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
+			$response->getBody()->write('Hello World from config!');
+			return $response;
+		}
+	]
+]);
 //run the App!
 $app->run();
