@@ -5,7 +5,7 @@ Unicorn is essentially a wrapper around [zend-diactoros](https://github.com/zend
 of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http://event.thephpleague.com/2.0/), 
 [league/container](http://container.thephpleague.com/), [league/route](http://route.thephpleague.com/)).
 
-Still in it's infancy, Unicorn was born of my frustrations while wanting a framework to handle the plumbing for me, but
+Still in it's infancy, Unicorn was born from my frustrations of wanting a framework to handle the plumbing for me, but
 not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
 
 - Want to build a "slim-esque" closure application? Easy. 

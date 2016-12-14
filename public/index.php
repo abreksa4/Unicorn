@@ -19,6 +19,8 @@ $app->getEventEmitter()->addListener(\Unicorn\App\Application::EVENT_ROUTE_EXCEP
 	$response = $response->withStatus(404, 'Not Found');
 	return $response;
 });
+
+//register another route from an array (could be read from configuration, no?)
 \Unicorn\Helpers\ConfiguredRoutes::bootstrapRoutes($app, [
 	'index' => [
 		'method' => 'GET',
