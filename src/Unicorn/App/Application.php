@@ -30,6 +30,10 @@ class Application implements ContainerInterface {
 	 */
 	private static $instance = NULL;
 	/**
+	 * @var array
+	 */
+	public $data = [];
+	/**
 	 * @var \League\Event\Emitter
 	 */
 	protected $eventEmitter;
@@ -72,7 +76,6 @@ class Application implements ContainerInterface {
 			$this->config = array_merge($this->config, json_decode(file_get_contents($file), TRUE));
 		}
 		$this->getContainer()->share(Application::class, $this);
-		$this->bootstrap();
 	}
 
 	/**
@@ -80,15 +83,6 @@ class Application implements ContainerInterface {
 	 */
 	public function getContainer() {
 		return $this->container;
-	}
-
-	private function bootstrap() {
-		$this->eventEmitter->emit(self::EVENT_BOOTSTRAP, $this);
-		$this->request = \Zend\Diactoros\ServerRequestFactory::fromGlobals(
-			$_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-		);
-		$this->response = new Response();
-		$this->getContainer()->share('emitter', \Zend\Diactoros\Response\SapiEmitter::class);
 	}
 
 	/**
@@ -101,10 +95,36 @@ class Application implements ContainerInterface {
 		return Application::$instance;
 	}
 
+	/**
+	 * @return array
+	 */
+	public function getData() {
+		return $this->data;
+	}
+
+	/**
+	 * @param array $data
+	 *
+	 * @return Application
+	 */
+	public function setData($data) {
+		$this->data = $data;
+		return $this;
+	}
+
+	public function bootstrap() {
+		$this->eventEmitter->emit(self::EVENT_BOOTSTRAP, $this);
+		$this->request = \Zend\Diactoros\ServerRequestFactory::fromGlobals(
+			$_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+		);
+		$this->setResponse(new Response());
+		$this->getContainer()->share('emitter', \Zend\Diactoros\Response\SapiEmitter::class);
+	}
+
 	public function run() {
 		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
 		try {
-			$this->response = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
+			$this->setResponse($this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse()));
 		} catch (NotFoundException $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
 		} catch (\Exception $exception) {
@@ -134,6 +154,16 @@ class Application implements ContainerInterface {
 	 */
 	public function getResponse() {
 		return $this->response;
+	}
+
+	/**
+	 * @param \Psr\Http\Message\ResponseInterface $response
+	 *
+	 * @return Application
+	 */
+	public function setResponse($response) {
+		$this->response = $response;
+		return $this;
 	}
 
 	/**
