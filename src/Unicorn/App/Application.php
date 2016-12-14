@@ -179,4 +179,22 @@ class Application implements ContainerInterface {
 	public function has($id) {
 		return in_array($id, ['response', 'request', 'config', 'eventEmitter', 'routeCollection']);
 	}
+
+	/**
+	 * @param array $routes
+	 */
+	public function bootstrapRoutes(array $routes) {
+		foreach ($routes as $name => $rinfo) {
+			$this->getRouteCollection()->map(strtoupper($rinfo['method']), $rinfo['route'], $rinfo['handler']);
+		}
+	}
+
+	/**
+	 * @param array $services
+	 */
+	public function bootstrapServices(array $services) {
+		foreach ($services as $key => $callable) {
+			$this->getContainer()->share($key, $callable);
+		}
+	}
 }

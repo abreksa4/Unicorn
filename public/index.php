@@ -21,15 +21,15 @@ $app->getEventEmitter()->addListener(\Unicorn\App\Application::EVENT_ROUTE_EXCEP
 });
 
 //register another route from an array (could be read from configuration, no?)
-\Unicorn\Helpers\ConfiguredRoutes::bootstrapRoutes($app, [
+$app->bootstrapRoutes([
 	'index' => [
-		'method' => 'GET',
-		'route' => '/config-routes',
+		'method'  => 'GET',
+		'route'   => '/config-routes',
 		'handler' => function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
 			$response->getBody()->write('Hello World from config!');
 			return $response;
-		}
-	]
+		},
+	],
 ]);
 //run the App!
 $app->run();
