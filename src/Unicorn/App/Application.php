@@ -21,10 +21,10 @@ class Application implements ContainerInterface {
 	const VERSION = '0';
 	const EVENT_BOOTSTRAP = 'app.bootstrap';
 	const EVENT_DISPATCH = 'app.delegate';
-	const EVENT_RENDER = 'app.render';
-	const EVENT_FINISH = 'app.finish';
 	const EVENT_ROUTE_EXCEPTION = 'app.route.exception';
 	const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';
+	const EVENT_RENDER = 'app.render';
+	const EVENT_FINISH = 'app.finish';
 	/**
 	 * @var Application
 	 */
