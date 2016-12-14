@@ -19,5 +19,9 @@
     "league/container": "2.2.0",
     "league/route": "2.0.1",
     "zendframework/zend-diactoros": "^1.3"
+  },
+  "scripts": {
+    "serve-debug": "php -dxdebug.remote_autostart=On -S 0.0.0.0:88 -t public",
+    "serve": "php -S 0.0.0.0:88 -t public"
   }
 }
