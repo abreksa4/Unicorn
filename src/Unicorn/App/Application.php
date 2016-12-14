@@ -163,7 +163,7 @@ class Application implements ContainerInterface {
 	public function get($id) {
 		if ($this->has($id)) {
 			$method = 'get' . ucwords($id);
-			return $this->$method;
+			return $this->$method();
 		}
 		return NULL;
 	}

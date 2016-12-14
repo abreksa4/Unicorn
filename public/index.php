@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 $app = \Unicorn\App\Application::getInstance();
 
 //add our GET:/ route
-$app->getRouteCollection()->map('GET', '/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
+$app->get('routeCollection')->map('GET', '/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
 	$response->getBody()->write('Hello World!');
 	return $response;
 });
