@@ -1,5 +1,5 @@
 # Unicorn
-_A tiny, single class PSR-7 web application "framework"_
+_A tiny single class RAD PSR-7 web application "framework"_
 
 Unicorn is essentially a wrapper around [zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple 
 of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http://event.thephpleague.com/2.0/), 
@@ -52,11 +52,16 @@ Configuration is (can be) stored in `./config/autoload`. Any `*.php` or `*.json`
 parsed and added to `Application::getInstance()->getConfig()`. And as always, feel free to completely ignore this 
 convention and do whatever you please.
 
+Regardless of how the configuration is set, on Application::bootstrap(), if there is either `services` or `routes` in 
+Application::getConfig(), the values of these keys are passed to Application::bootstrapServices() and 
+Application::bootstrapRoutes() respectively.
+
 ## Dependency container
 Unicorn uses [league/container](http://container.thephpleague.com/), which follows the 
 [container-interop](https://github.com/container-interop/container-interop) standard. All of the 
 `Application::getInstance()->get*()` objects are also available via the container 
-(`Application::getInstance()->getContainer()`) except the container itself and `data`, as Unicorn registers itself as a delegate.
+(`Application::getInstance()->getContainer()`) except the container itself and `data`, as Unicorn registers itself as a 
+delegate.
 
 ## Conclusion
 Unicorn is supposed to do just about nothing, or in short, everything you should need for any PHP web application. If 

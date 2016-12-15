@@ -24,6 +24,7 @@ class Application implements ContainerInterface {
 	const EVENT_ROUTE_EXCEPTION = 'app.route.exception';
 	const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';
 	const EVENT_RENDER = 'app.render';
+	const EVENT_EMIT_ERROR = 'app.emit.exception';
 	const EVENT_FINISH = 'app.finish';
 	/**
 	 * @var Application
@@ -112,6 +113,9 @@ class Application implements ContainerInterface {
 		return $this;
 	}
 
+	/**
+	 * Create the Request and Response objects, and share the PSR-7 Emitter with the container
+	 */
 	public function bootstrap() {
 		$this->eventEmitter->emit(self::EVENT_BOOTSTRAP, $this);
 		$this->request = \Zend\Diactoros\ServerRequestFactory::fromGlobals(
@@ -119,8 +123,17 @@ class Application implements ContainerInterface {
 		);
 		$this->setResponse(new Response());
 		$this->getContainer()->share('emitter', \Zend\Diactoros\Response\SapiEmitter::class);
+		if (array_key_exists('services', $this->getConfig())) {
+			$this->bootstrapServices($this->getConfig()['services']);
+		}
+		if (array_key_exists('routes', $this->getConfig())) {
+			$this->bootstrapRoutes($this->getConfig()['routes']);
+		}
 	}
 
+	/**
+	 * Execute the Application
+	 */
 	public function run() {
 		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
 		try {
@@ -132,7 +145,11 @@ class Application implements ContainerInterface {
 		}
 		$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
 		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);
+		try {
 		$this->getContainer()->get('emitter')->emit($this->getResponse());
+		} catch (\Exception $exception) {
+			$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
+		}
 	}
 
 	/**
@@ -211,6 +228,9 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Takes an associative array of routeName => ['method'=>string, 'route'=>string, 'hsndler'=>callable]
+	 * and registers those routes
+	 *
 	 * @param array $routes
 	 */
 	public function bootstrapRoutes(array $routes) {
@@ -220,6 +240,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Takes an associative array of $serviceName => $callable to share with the service container
+	 *
 	 * @param array $services
 	 */
 	public function bootstrapServices(array $services) {
