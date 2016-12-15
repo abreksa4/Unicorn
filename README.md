@@ -1,5 +1,6 @@
-# Unicorn
-_A tiny single class RAD PSR-7 web application "framework"_
+# [Unicorn](https://github.com/abreksa4/Unicorn)
+_A tiny single class RAD PSR-7 web application "framework" maintained by [Andrew Breksa](https://github.com/abreksa4) 
+<[andrew@andrewbreksa.com](mailto:andrew@andrewbreksa.com)>_
 
 Unicorn is essentially a wrapper around [zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple 
 of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http://event.thephpleague.com/2.0/), 
@@ -52,9 +53,9 @@ Configuration is (can be) stored in `./config/autoload`. Any `*.php` or `*.json`
 parsed and added to `Application::getInstance()->getConfig()`. And as always, feel free to completely ignore this 
 convention and do whatever you please.
 
-Regardless of how the configuration is set, on Application::bootstrap(), if there is either `services` or `routes` in 
-Application::getConfig(), the values of these keys are passed to Application::bootstrapServices() and 
-Application::bootstrapRoutes() respectively.
+Regardless of how the configuration is set, on `Application::bootstrap()`, if there is either `services` or `routes` in 
+Application::getConfig(), the values of these keys are passed to `Application::bootstrapServices()` and 
+`Application::bootstrapRoutes()` respectively.
 
 ## Dependency container
 Unicorn uses [league/container](http://container.thephpleague.com/), which follows the 
