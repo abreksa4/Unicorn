@@ -14,7 +14,7 @@ not force a specific architecture or style, as applications tend to get very dom
 - Want to use all of the above in the same app? Go ahead. 
 
 Unicorn attempts to do only the minimum, providing a service container, a router, a few event hooks for the various 
-stages of the application lifecycle, and a PSR-7 implementation (parser and emmiter). And if you'd like, consider it an
+stages of the application lifecycle, and a PSR-7 implementation (parser and emitter). And if you'd like, consider it an
 anti-framework framework. You might have to write some code... ;)
 
 ## Installation
