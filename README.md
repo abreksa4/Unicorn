@@ -10,7 +10,8 @@ Still in it's infancy, Unicorn was born from my frustrations of wanting a framew
 not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
 
 - Want to build a closure application? Easy. 
-- Want to build a PSR-7 middleware app? Use your own pipeline implementation. 
+- Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend [league/pipeline](http://pipeline.thephpleague.com/). 
+Remember, the `Application` object follows the singleton pattern and is accessible via `Application::getInstance()`)
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
 
@@ -53,9 +54,9 @@ Configuration is (can be) stored in `./config/autoload`. Any `*.php` or `*.json`
 parsed and added to `Application::getInstance()->getConfig()`. And as always, feel free to completely ignore this 
 convention and do whatever you please.
 
-Regardless of how the configuration is set, on `Application::bootstrap()`, if there is either `services` or `routes` in 
-Application::getConfig(), the values of these keys are passed to `Application::bootstrapServices()` and 
-`Application::bootstrapRoutes()` respectively.
+Regardless of how the configuration is set, on `Application->bootstrap()` (after `EVENT_BOOTSTRAP`), if there is either 
+`services` or `routes` in `Application->getConfig()`, the values of these keys are passed to 
+`Application->bootstrapServices()` and `Application->bootstrapRoutes()` respectively.
 
 ## Dependency container
 Unicorn uses [league/container](http://container.thephpleague.com/), which follows the 
@@ -66,5 +67,6 @@ delegate.
 
 ## Conclusion
 Unicorn is supposed to do just about nothing, or in short, everything you should need for any PHP web application. If 
-you're tired of fitting your domain requirements to a framework, you just might enjoy working with Unicorn. As always, 
-feel free to fork and open pull requests against this repo. I don't claim to know what I'm doing. :)
+you're tired of fitting your domain requirements to a framework or needing to write hacky workarounds to problems caused 
+by lack of control, you just might enjoy working with Unicorn. As always, feel free to fork and open pull requests 
+against this repo. I don't claim to know what I'm doing. :)
