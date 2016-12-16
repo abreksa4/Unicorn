@@ -18,13 +18,39 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response;
 
 class Application implements ContainerInterface {
+	/**
+	 * The Unicorn version
+	 */
 	const VERSION = '0';
+	/**
+	 * Runs on Application->bootstrap()
+	 */
 	const EVENT_BOOTSTRAP = 'app.bootstrap';
+	/**
+	 * Runs before dispatch
+	 */
 	const EVENT_DISPATCH = 'app.dispatch';
+	/**
+	 * Runs in case of a NotFoundException, listeners get $this and $exceptions as arguments as well as the Event object
+	 */
 	const EVENT_ROUTE_EXCEPTION = 'app.route.exception';
+	/**
+	 * Runs in case of an \Exception during dispatch, listeners get $this and $exceptions as arguments as well as the
+	 * Event object
+	 */
 	const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';
+	/**
+	 * Runs after dispatch. Unicorn includes no default functionality to redner
+	 */
 	const EVENT_RENDER = 'app.render';
+	/**
+	 * Runs in case of an \Exception during emitting the PSR-7 response, listeners get $this and $exceptions as
+	 * arguments as well as the Event object
+	 */
 	const EVENT_EMIT_ERROR = 'app.emit.exception';
+	/**
+	 * Runs after the PSR-7 response has been emitted
+	 */
 	const EVENT_FINISH = 'app.finish';
 	/**
 	 * @var Application
@@ -80,6 +106,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get the league/container container
+	 *
 	 * @return \League\Container\Container
 	 */
 	public function getContainer() {
@@ -87,6 +115,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get the singleton instance of Application
+	 *
 	 * @return Application
 	 */
 	public static function getInstance() {
@@ -97,6 +127,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get arbitrary data
+	 *
 	 * @return array
 	 */
 	public function getData() {
@@ -104,6 +136,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Set arbitrary data
+	 *
 	 * @param array $data
 	 *
 	 * @return Application
@@ -144,15 +178,17 @@ class Application implements ContainerInterface {
 			$this->getEventEmitter()->emit(self::EVENT_DISPATCH_EXCEPTION, $this, $exception);
 		}
 		$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
-		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);
 		try {
 		$this->getContainer()->get('emitter')->emit($this->getResponse());
 		} catch (\Exception $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
 		}
+		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);
 	}
 
 	/**
+	 * Get the league/route router
+	 *
 	 * @return RouteCollection
 	 */
 	public function getRouteCollection() {
@@ -160,6 +196,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get the PSR-7 request
+	 *
 	 * @return \Psr\Http\Message\ServerRequestInterface
 	 */
 	public function getRequest() {
@@ -167,6 +205,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get the PSR-7 response
+	 *
 	 * @return \Psr\Http\Message\ResponseInterface
 	 */
 	public function getResponse() {
@@ -174,6 +214,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Set the PSR-7 response
+	 *
 	 * @param \Psr\Http\Message\ResponseInterface $response
 	 *
 	 * @return Application
@@ -184,6 +226,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get the event Emitter to either listen or emitt events
+	 *
 	 * @return \League\Event\Emitter
 	 */
 	public function getEventEmitter() {
@@ -191,6 +235,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Return the application configuration
+	 *
 	 * @return array
 	 */
 	public function getConfig() {
