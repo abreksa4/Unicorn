@@ -202,21 +202,21 @@ class Application implements ContainerInterface {
 	 * Execute the Application
 	 */
 	public function run() {
-		$skipEmit = FALSE;
+		$emit = TRUE;
 		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
 		try {
 			$result = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
 			if(!is_null($result) && $result instanceof ResponseInterface){
 				$this->setResponse($result);
 			} elseif ($result == FALSE){
-				$skipEmit = TRUE;
+				$emit = FALSE;
 			}
 		} catch (NotFoundException $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
 		} catch (\Exception $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_DISPATCH_EXCEPTION, $this, $exception);
 		}
-		if($skipEmit === FALSE) {
+		if($emit === TRUE) {
 			$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
 			try {
 				$this->getContainer()->get('emitter')->emit($this->getResponse());
