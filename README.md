@@ -20,10 +20,18 @@ stages of the application lifecycle, and a PSR-7 implementation (parser and emit
 anti-framework framework. You might have to write some code... ;)
 
 ## Installation
-Unicorn isn't hosted on Packagegist as of yet, so follow this handy guide by Eugene Morgan to get Unicorn in your 
-project: 
-[Adding a random GitHub repository to your project using Composer](http://eugenemorgan.com/adding-a-random-github-repository-to-your-project-using-composer/)
-
+Unicorn isn't hosted on Packagegist as of yet, so:
+1. Add the following to your `composer.json`:
+	```
+	"repositories": [
+        {
+          "type": "git",
+          "url": "https://github.com/abreksa4/Unicorn"
+        }
+      ]
+    ```
+2. Run `composer require andrewbreksa/unicorn`
+      
 ## Usage
 Check out the example [index.php](https://github.com/abreksa4/Unicorn/blob/master/public/index.php) to see how to setup 
 a basic app. (And I mean basic).
