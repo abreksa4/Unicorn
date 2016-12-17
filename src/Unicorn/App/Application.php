@@ -18,6 +18,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Zend\Diactoros\Response;
 
+/**
+ * A tiny single class RAD PSR-7 web application "framework"
+ *
+ * Class Application
+ * @package Unicorn\App
+ * @author  Andrew Breksa <andrewbreksa.com>
+ */
 class Application implements ContainerInterface {
 	/**
 	 * The Unicorn version
@@ -64,6 +71,12 @@ class Application implements ContainerInterface {
 	 */
 	public $data = [];
 	/**
+	 * The application config data
+	 *
+	 * @var array
+	 */
+	public $config = [];
+	/**
 	 * The event emittet
 	 *
 	 * @var \League\Event\Emitter
@@ -75,12 +88,6 @@ class Application implements ContainerInterface {
 	 * @var \League\Container\Container
 	 */
 	protected $container;
-	/**
-	 * The application config data
-	 *
-	 * @var array
-	 */
-	public $config = [];
 	/**
 	 * The router
 	 *
@@ -151,12 +158,28 @@ class Application implements ContainerInterface {
 	 */
 	public static function getInstance($basedir = NULL) {
 		if (Application::$instance == NULL) {
-			if(is_null($basedir)){
+			if (is_null($basedir)) {
 				throw new \InvalidArgumentException('$basedir is required on initial Application creation');
 			}
 			Application::$instance = new Application($basedir);
 		}
+
 		return Application::$instance;
+	}
+
+	/**
+	 * Optionally takes a string and returns a stream open to php://temp at r+
+	 *
+	 * @param string|null $string
+	 * @return StreamInterface
+	 */
+	public static function newTempStream($string = NULL) {
+		$stream = new \Zend\Diactoros\Stream(fopen('php://temp', 'r+'));
+		if (!is_null($string)) {
+			$stream->write($string);
+		}
+
+		return $stream;
 	}
 
 	/**
@@ -177,6 +200,7 @@ class Application implements ContainerInterface {
 	 */
 	public function setData($data) {
 		$this->data = $data;
+
 		return $this;
 	}
 
@@ -199,32 +223,47 @@ class Application implements ContainerInterface {
 	}
 
 	/**
-	 * Execute the Application
+	 * Return the application configuration
+	 *
+	 * @return array
 	 */
-	public function run() {
-		$emit = TRUE;
-		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
-		try {
-			$result = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
-			if(!is_null($result) && $result instanceof ResponseInterface){
-				$this->setResponse($result);
-			} elseif ($result == FALSE){
-				$emit = FALSE;
-			}
-		} catch (NotFoundException $exception) {
-			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
-		} catch (\Exception $exception) {
-			$this->getEventEmitter()->emit(self::EVENT_DISPATCH_EXCEPTION, $this, $exception);
+	public function getConfig() {
+		return $this->config;
+	}
+
+	/**
+	 * Set the array of config data
+	 *
+	 * @param array $config
+	 * @return Application
+	 */
+	public function setConfig($config) {
+		$this->config = $config;
+
+		return $this;
+	}
+
+	/**
+	 * Takes an associative array of $serviceName => $callable to share with the service container
+	 *
+	 * @param array $services
+	 */
+	public function bootstrapServices(array $services) {
+		foreach ($services as $key => $callable) {
+			$this->getContainer()->share($key, $callable);
 		}
-		if($emit === TRUE) {
-			$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
-			try {
-				$this->getContainer()->get('emitter')->emit($this->getResponse());
-			} catch (\Exception $exception) {
-				$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
-			}
+	}
+
+	/**
+	 * Takes an associative array of routeName => ['method'=>string, 'route'=>string, 'hsndler'=>callable]
+	 * and registers those routes
+	 *
+	 * @param array $routes
+	 */
+	public function bootstrapRoutes(array $routes) {
+		foreach ($routes as $name => $rinfo) {
+			$this->getRouteCollection()->map(strtoupper($rinfo['method']), $rinfo['route'], $rinfo['handler']);
 		}
-		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);
 	}
 
 	/**
@@ -234,6 +273,35 @@ class Application implements ContainerInterface {
 	 */
 	public function getRouteCollection() {
 		return $this->routeCollection;
+	}
+
+	/**
+	 * Execute the Application
+	 */
+	public function run() {
+		$emit = TRUE;
+		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
+		try {
+			$result = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
+			if (!is_null($result) && $result instanceof ResponseInterface) {
+				$this->setResponse($result);
+			} elseif ($result == FALSE) {
+				$emit = FALSE;
+			}
+		} catch (NotFoundException $exception) {
+			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
+		} catch (\Exception $exception) {
+			$this->getEventEmitter()->emit(self::EVENT_DISPATCH_EXCEPTION, $this, $exception);
+		}
+		if ($emit === TRUE) {
+			$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
+			try {
+				$this->getContainer()->get('emitter')->emit($this->getResponse());
+			} catch (\Exception $exception) {
+				$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
+			}
+		}
+		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);
 	}
 
 	/**
@@ -263,6 +331,7 @@ class Application implements ContainerInterface {
 	 */
 	public function setResponse($response) {
 		$this->response = $response;
+
 		return $this;
 	}
 
@@ -273,15 +342,6 @@ class Application implements ContainerInterface {
 	 */
 	public function getEventEmitter() {
 		return $this->eventEmitter;
-	}
-
-	/**
-	 * Return the application configuration
-	 *
-	 * @return array
-	 */
-	public function getConfig() {
-		return $this->config;
 	}
 
 	/**
@@ -297,8 +357,10 @@ class Application implements ContainerInterface {
 	public function get($id) {
 		if ($this->has($id)) {
 			$method = 'get' . ucwords($id);
+
 			return $this->$method();
 		}
+
 		return NULL;
 	}
 
@@ -312,18 +374,6 @@ class Application implements ContainerInterface {
 	 */
 	public function has($id) {
 		return in_array($id, ['response', 'request', 'config', 'eventEmitter', 'routeCollection']);
-	}
-
-	/**
-	 * Set the array of config data
-	 *
-	 * @param array $config
-	 * @return Application
-	 */
-	public function setConfig($config) {
-		$this->config = $config;
-
-		return $this;
 	}
 
 	/**
@@ -345,42 +395,5 @@ class Application implements ContainerInterface {
 		$this->basedir = $basedir;
 
 		return $this;
-	}
-
-	/**
-	 * Takes an associative array of routeName => ['method'=>string, 'route'=>string, 'hsndler'=>callable]
-	 * and registers those routes
-	 *
-	 * @param array $routes
-	 */
-	public function bootstrapRoutes(array $routes) {
-		foreach ($routes as $name => $rinfo) {
-			$this->getRouteCollection()->map(strtoupper($rinfo['method']), $rinfo['route'], $rinfo['handler']);
-		}
-	}
-
-	/**
-	 * Takes an associative array of $serviceName => $callable to share with the service container
-	 *
-	 * @param array $services
-	 */
-	public function bootstrapServices(array $services) {
-		foreach ($services as $key => $callable) {
-			$this->getContainer()->share($key, $callable);
-		}
-	}
-
-	/**
-	 * Optionally takes a string and returns a stream open to php://temp at r+
-	 *
-	 * @param string|null $string
-	 * @return StreamInterface
-	 */
-	public static function newTempStream($string = NULL){
-		$stream = new \Zend\Diactoros\Stream(fopen('php://temp', 'r+'));
-		if(!is_null($string)){
-			$stream->write($string);
-		}
-		return $stream;
 	}
 }

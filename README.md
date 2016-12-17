@@ -1,10 +1,10 @@
 # [Unicorn](https://github.com/abreksa4/Unicorn)
-_A tiny single class RAD PSR-7 web application "framework" maintained by [Andrew Breksa](https://github.com/abreksa4) 
-<[andrew@andrewbreksa.com](mailto:andrew@andrewbreksa.com)>_
+_A tiny single class RAD PSR-7 web application "framework"_
 
-Unicorn is essentially a wrapper around [zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple 
-of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http://event.thephpleague.com/2.0/), 
-[league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/)).
+Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) 
+and a couple of [The PHP League](https://thephpleague.com/) packages: 
+[league/event](http://event.thephpleague.com/2.0/), [league/container](http://container.thephpleague.com/), and 
+[league/route](http://route.thephpleague.com/).
 
 Still in it's infancy, Unicorn was born from my frustrations of wanting a framework to handle the plumbing for me, but
 not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
@@ -98,6 +98,8 @@ the Application instance by default. `EVENT_*_EXCEPTION` events are passed an ad
 ## Conclusion
 Unicorn is supposed to do just about nothing, or in short, everything you should need for any PHP web application. If 
 you're tired of fitting your domain requirements to a framework or needing to write hacky workarounds to problems caused 
-by lack of control, you just might enjoy working with Unicorn. As always, feel free to fork and open pull requests 
-against this repo. I don't claim to know what I'm doing, and I feel Unicorn would best serve the community evolving as a
-communal project defined by common project requirements instead of a specific set of design patterns. :)
+by lack of control, you just might enjoy working with Unicorn. 
+
+Feel free to fork and open pull requests against this repo. I don't claim to know what I'm doing, and I feel Unicorn 
+would best serve the community evolving as a project defined by common project requirements instead of a specific set of 
+design patterns and 'full-featured' mentality.
