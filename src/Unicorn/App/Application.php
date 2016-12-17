@@ -23,7 +23,7 @@ use Zend\Diactoros\Response;
  *
  * Class Application
  * @package Unicorn\App
- * @author  Andrew Breksa <andrewbreksa.com>
+ * @author Andrew Breksa <andrewbreksa.com>
  */
 class Application implements ContainerInterface {
 	/**
