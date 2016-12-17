@@ -285,6 +285,33 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * @param array $config
+	 * @return Application
+	 */
+	public function setConfig($config) {
+		$this->config = $config;
+
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBasedir() {
+		return $this->basedir;
+	}
+
+	/**
+	 * @param string $basedir
+	 * @return Application
+	 */
+	public function setBasedir($basedir) {
+		$this->basedir = $basedir;
+
+		return $this;
+	}
+
+	/**
 	 * Takes an associative array of routeName => ['method'=>string, 'route'=>string, 'hsndler'=>callable]
 	 * and registers those routes
 	 *
