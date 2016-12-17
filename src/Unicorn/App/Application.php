@@ -71,7 +71,7 @@ class Application implements ContainerInterface {
 	/**
 	 * @var array
 	 */
-	protected $config = [];
+	public $config = [];
 	/**
 	 * @var RouteCollection
 	 */
