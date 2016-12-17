@@ -15,6 +15,7 @@ use League\Route\Http\Exception\NotFoundException;
 use League\Route\RouteCollection;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\StreamInterface;
 use Zend\Diactoros\Response;
 
 class Application implements ContainerInterface {
@@ -335,5 +336,19 @@ class Application implements ContainerInterface {
 		foreach ($services as $key => $callable) {
 			$this->getContainer()->share($key, $callable);
 		}
+	}
+
+	/**
+	 * Optionally takes a string and returns a stream open to php://temp at r+
+	 *
+	 * @param string|null $string
+	 * @return StreamInterface
+	 */
+	public function stringToStream($string = NULL){
+		$stream = new \Zend\Diactoros\Stream(fopen('php://temp', 'r+'));
+		if(!is_null($string)){
+			$stream->write($string);
+		}
+		return $stream;
 	}
 }
