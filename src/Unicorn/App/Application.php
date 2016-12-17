@@ -86,9 +86,15 @@ class Application implements ContainerInterface {
 	protected $request;
 
 	/**
+	 * @var string
+	 */
+	protected $basedir;
+
+	/**
 	 * Application constructor.
 	 */
-	private function __construct() {
+	private function __construct($basedir) {
+		$this->basedir = $basedir;
 		$this->eventEmitter = new Emitter();
 		$this->container = new Container();
 		$this->getContainer()->delegate(
@@ -96,10 +102,10 @@ class Application implements ContainerInterface {
 		);
 		$this->getContainer()->delegate($this);
 		$this->routeCollection = new RouteCollection($this->getContainer());
-		foreach (glob(__DIR__ . '/../../../config/autoload/*.php') as $file) {
+		foreach (glob($this->basedir . '/config/autoload/*.php') as $file) {
 			$this->config = array_merge($this->config, include($file));
 		}
-		foreach (glob(__DIR__ . '/../../../config/autoload/*.json') as $file) {
+		foreach (glob($this->basedir . '/config/autoload/*.json') as $file) {
 			$this->config = array_merge($this->config, json_decode(file_get_contents($file), TRUE));
 		}
 		$this->getContainer()->share(Application::class, $this);
@@ -117,11 +123,16 @@ class Application implements ContainerInterface {
 	/**
 	 * Get the singleton instance of Application
 	 *
+	 * @param string|null $basedir
 	 * @return Application
+	 * @throws \InvalidArgumentException if the $basedir is not set on initial creation
 	 */
-	public static function getInstance() {
+	public static function getInstance($basedir = NULL) {
 		if (Application::$instance == NULL) {
-			Application::$instance = new Application();
+			if(is_null($basedir)){
+				throw new \InvalidArgumentException('$basedir is required on initial Application creation');
+			}
+			Application::$instance = new Application($basedir);
 		}
 		return Application::$instance;
 	}
