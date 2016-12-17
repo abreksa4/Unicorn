@@ -182,7 +182,10 @@ class Application implements ContainerInterface {
 	public function run() {
 		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
 		try {
-			$this->setResponse($this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse()));
+			$result = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
+			if(!is_null($result) && $result instanceof ResponseInterface){
+				$this->setResponse($result);
+			}
 		} catch (NotFoundException $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
 		} catch (\Exception $exception) {
