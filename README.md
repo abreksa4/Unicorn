@@ -10,8 +10,10 @@ Still in it's infancy, Unicorn was born from my frustrations of wanting a framew
 not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
 
 - Want to build a closure application? Easy. 
-- Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend [league/pipeline](http://pipeline.thephpleague.com/). 
-Remember, the `Application` object follows the singleton pattern and is accessible via `Application::getInstance()`)
+- Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend 
+[league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object follows the singleton pattern 
+and is accessible via `Application::getInstance()`. I would include support for that by default, but I feel this is not 
+always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
 
@@ -40,6 +42,7 @@ a basic app. (And I mean basic).
 
 ## Application lifecycle/events
 _As defined in \Unicorn\App\Application_
+
 ```
 	const EVENT_BOOTSTRAP = 'app.bootstrap';
 	const EVENT_DISPATCH = 'app.dispatch';
@@ -48,13 +51,18 @@ _As defined in \Unicorn\App\Application_
 	const EVENT_RENDER = 'app.render';
 	const EVENT_FINISH = 'app.finish';
 ```
-Each event is emitted before the action takes place (if any, render doesn't do anything), and the event manager is 
-accessible via `Application::getInstance()->getEventEmitter()`.
+
+Each event is emitted before the action takes place (if any, `Application::EVENT_RENDER` doesn't do anything), 
+and the event manager is accessible via `Application::getInstance()->getEventEmitter()`.
 Fairly simple, see the [league/event](http://event.thephpleague.com/2.0/) documentation.
 
 ## Routing
 You can access the router via `Application::getInstance()->getRouteCollection()`. From there check out the 
-[league/route](http://route.thephpleague.com/) docs for more info.
+[league/route](http://route.thephpleague.com/) docs for more info. A note on the return values of methods/closures/etc
+called on dispatch: If `NULL` is returned (or nothing at all, implied) then `Application->$response` is not updated, but
+the emitting process is carried out. However, if you return `FALSE`, the emitting process is not carried out and 
+`Application::EVENT_RENDER` (needless to say, `Application::EVENT_EMIT_ERROR` is not) is not emitted either. This can be 
+used to run other, non-Unicorn, code or frameworks on specific routes.
 
 ## PSR-7
 Really? Ok, well checkout [php-fig.org](http://www.php-fig.org/psr/psr-7/) for more info.
@@ -72,11 +80,21 @@ Regardless of how the configuration is set, on `Application->bootstrap()` (after
 Unicorn uses [league/container](http://container.thephpleague.com/), which follows the 
 [container-interop](https://github.com/container-interop/container-interop) standard. All of the 
 `Application::getInstance()->get*()` objects are also available via the container 
-(`Application::getInstance()->getContainer()`) except the container itself and `data`, as Unicorn registers itself as a 
-delegate.
+(`Application::getInstance()->getContainer()`) as Unicorn registers itself as a delegate ( except the container itself, 
+`baseDir`, and `data`. The dependency container is also set to use the `League\Container\ReflectionContainer` as a 
+delegate, so constructor dependencies should be automatically if available 
+[more on auto-wiring](http://container.thephpleague.com/auto-wiring/). 
+
+## Notes
+As the architecture and use cases of Unicorn are still being fleshed out, I've yet to put together thorough 
+documentation. It's more of a pet project really that I'm using for RAD on a couple of personal projects. 
+
+Event listeners attached to the various `Application::EVENT_*` events are passed a `\League\Event\Event` and 
+the Application instance by default. `EVENT_*_EXCEPTION` events are passed an additional `\Exception` parameter. 
 
 ## Conclusion
 Unicorn is supposed to do just about nothing, or in short, everything you should need for any PHP web application. If 
 you're tired of fitting your domain requirements to a framework or needing to write hacky workarounds to problems caused 
 by lack of control, you just might enjoy working with Unicorn. As always, feel free to fork and open pull requests 
-against this repo. I don't claim to know what I'm doing. :)
+against this repo. I don't claim to know what I'm doing, and I feel Unicorn would best serve the community evolving as a
+communal project defined by common project requirements instead of a specific set of design patterns. :)
