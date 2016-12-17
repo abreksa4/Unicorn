@@ -21,7 +21,6 @@ use Zend\Diactoros\Response;
 /**
  * A tiny single class RAD PSR-7 web application "framework"
  *
- * Class Application
  * @package Unicorn\App
  * @author Andrew Breksa <andrewbreksa.com>
  */
