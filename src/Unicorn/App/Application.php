@@ -219,6 +219,9 @@ class Application implements ContainerInterface {
 		if (array_key_exists('routes', $this->getConfig())) {
 			$this->bootstrapRoutes($this->getConfig()['routes']);
 		}
+		if(array_key_exists('eventListeners', $this->getConfig())){
+			$this->bootstrapEventListeners($this->getConfig()['eventListeners']);
+		}
 	}
 
 	/**
@@ -262,6 +265,21 @@ class Application implements ContainerInterface {
 	public function bootstrapRoutes(array $routes) {
 		foreach ($routes as $name => $rinfo) {
 			$this->getRouteCollection()->map(strtoupper($rinfo['method']), $rinfo['route'], $rinfo['handler']);
+		}
+	}
+
+	/**
+	 * Takes an array of associative arrays with event, handler, and optionally priority.
+	 *
+	 * @param array $listeners
+	 */
+	public function bootstrapEventListeners(array $listeners){
+		foreach ($listeners as $listener){
+			if(array_key_exists('priority', $listener)){
+				$this->getEventEmitter()->addListener($listener['event'], $listener['handler'], $listener['priority']);
+			} else {
+				$this->getEventEmitter()->addListener($listener['event'], $listener['handler']);
+			}
 		}
 	}
 

@@ -75,9 +75,10 @@ Configuration is (can be) stored in `./config/autoload`. Any `*.php` or `*.json`
 parsed and added to `Application::getInstance()->getConfig()`. And as always, feel free to completely ignore this 
 convention and do whatever you please.
 
-Regardless of how the configuration is set, on `Application->bootstrap()` (after `EVENT_BOOTSTRAP`), if there is either 
-`services` or `routes` in `Application->getConfig()`, the values of these keys are passed to 
-`Application->bootstrapServices()` and `Application->bootstrapRoutes()` respectively.
+Regardless of how the configuration is set, on `Application->bootstrap()` (after `EVENT_BOOTSTRAP`), if there is any of 
+`services`, `routes` `eventListeners` in `Application->getConfig()`, the values of these keys are passed to 
+`Application->bootstrapServices()`, `Application->bootstrapRoutes()` and `Application->bootstrapEventListeners()` 
+respectively.
 
 ## Dependency container
 Unicorn uses [league/container](http://container.thephpleague.com/), which follows the 
