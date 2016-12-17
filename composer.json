@@ -3,6 +3,8 @@
   "description": "",
   "minimum-stability": "dev",
   "license": "proprietary",
+  "version": "1.0.0.0",
+  "type": "library",
   "authors": [
     {
       "name": "Andrew Breksa",
