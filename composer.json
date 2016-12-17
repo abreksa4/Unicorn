@@ -24,6 +24,7 @@
   },
   "scripts": {
     "serve-debug": "php -dxdebug.remote_autostart=On -S 0.0.0.0:88 -t public",
-    "serve": "php -S 0.0.0.0:88 -t public"
+    "serve": "php -S 0.0.0.0:88 -t public",
+    "gen-docs": "php apigen.phar generate -s src -d docs"
   }
 }
