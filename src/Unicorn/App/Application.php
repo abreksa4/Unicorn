@@ -344,7 +344,7 @@ class Application implements ContainerInterface {
 	 * @param string|null $string
 	 * @return StreamInterface
 	 */
-	public function stringToStream($string = NULL){
+	public static function stringToStream($string = NULL){
 		$stream = new \Zend\Diactoros\Stream(fopen('php://temp', 'r+'));
 		if(!is_null($string)){
 			$stream->write($string);
