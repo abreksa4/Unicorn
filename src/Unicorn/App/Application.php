@@ -58,43 +58,64 @@ class Application implements ContainerInterface {
 	 */
 	private static $instance = NULL;
 	/**
+	 * An array of arbitrary data, could hold user data, non-formatted responses, etc
+	 *
 	 * @var array
 	 */
 	public $data = [];
 	/**
+	 * The event emittet
+	 *
 	 * @var \League\Event\Emitter
 	 */
 	protected $eventEmitter;
 	/**
+	 * The DI container
+	 *
 	 * @var \League\Container\Container
 	 */
 	protected $container;
 	/**
+	 * The application config data
+	 *
 	 * @var array
 	 */
 	public $config = [];
 	/**
+	 * The router
+	 *
 	 * @var RouteCollection
 	 */
 	protected $routeCollection;
 	/**
+	 * Uh, the response
+	 *
 	 * @var ResponseInterface
 	 */
 	protected $response;
 	/**
+	 * Uh-huh, the request
+	 *
 	 * @var ServerRequestInterface
 	 */
 	protected $request;
 
 	/**
+	 * The root project directory
+	 *
 	 * @var string
 	 */
 	protected $basedir;
 
 	/**
+	 * If using the Singleton pattern for Unicorn, don't call this directly. Instead, call Application::getInstance().
+	 *
+	 * You might, however, want to use multiple copies of Unicorn in one app. In that case, feel free to ignore the
+	 * Singleton patten altogether.
+	 *
 	 * Application constructor.
 	 */
-	private function __construct($basedir) {
+	public function __construct($basedir) {
 		$this->basedir = $basedir;
 		$this->eventEmitter = new Emitter();
 		$this->container = new Container();
@@ -181,22 +202,27 @@ class Application implements ContainerInterface {
 	 * Execute the Application
 	 */
 	public function run() {
+		$skipEmit = FALSE;
 		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
 		try {
 			$result = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
 			if(!is_null($result) && $result instanceof ResponseInterface){
 				$this->setResponse($result);
+			} elseif ($result == FALSE){
+				$skipEmit = TRUE;
 			}
 		} catch (NotFoundException $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
 		} catch (\Exception $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_DISPATCH_EXCEPTION, $this, $exception);
 		}
-		$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
-		try {
-		$this->getContainer()->get('emitter')->emit($this->getResponse());
-		} catch (\Exception $exception) {
-			$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
+		if($skipEmit === FALSE) {
+			$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
+			try {
+				$this->getContainer()->get('emitter')->emit($this->getResponse());
+			} catch (\Exception $exception) {
+				$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
+			}
 		}
 		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);
 	}
@@ -289,6 +315,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Set the array of config data
+	 *
 	 * @param array $config
 	 * @return Application
 	 */
@@ -299,6 +327,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Get the set root directory of the project
+	 *
 	 * @return string
 	 */
 	public function getBasedir() {
@@ -306,6 +336,8 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Set the root directory of the project
+	 *
 	 * @param string $basedir
 	 * @return Application
 	 */

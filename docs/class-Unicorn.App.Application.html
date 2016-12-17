@@ -105,7 +105,7 @@
 		<b>Namespace:</b> <a href="namespace-Unicorn.html">Unicorn</a>\<a href="namespace-Unicorn.App.html">App</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Unicorn.App.Application.html#21-354" title="Go to source code">Unicorn/App/Application.php</a>
+			<b>Located at</b> <a href="source-class-Unicorn.App.Application.html#21-386" title="Go to source code">Unicorn/App/Application.php</a>
 		<br>
 	</div>
 
@@ -113,6 +113,41 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Unicorn.App.Application.html#110-134" title="Go to source code">__construct</a>( <span> <var>$basedir</var></span> )</code>
+
+		<div class="description short">
+			<p>If using the Singleton pattern for Unicorn, don't call this directly. Instead, call Application::getInstance().</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>If using the Singleton pattern for Unicorn, don't call this directly. Instead, call Application::getInstance().</p>
+
+<p>You might, however, want to use multiple copies of Unicorn in one app. In that case, feel free to ignore the
+Singleton patten altogether.</p>
+
+<p>Application constructor.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getContainer" id="_getContainer">
 
 		<td class="attributes"><code>
@@ -125,7 +160,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getContainer">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#115-122" title="Go to source code">getContainer</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#136-143" title="Go to source code">getContainer</a>( )</code>
 
 		<div class="description short">
 			<p>Get the league/container container</p>
@@ -159,7 +194,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getInstance">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#124-139" title="Go to source code">getInstance</a>( <span>string|null <var>$basedir</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#145-160" title="Go to source code">getInstance</a>( <span>string|null <var>$basedir</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			<p>Get the singleton instance of Application</p>
@@ -202,7 +237,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getData">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#141-148" title="Go to source code">getData</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#162-169" title="Go to source code">getData</a>( )</code>
 
 		<div class="description short">
 			<p>Get arbitrary data</p>
@@ -236,7 +271,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setData">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#150-160" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#171-181" title="Go to source code">setData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			<p>Set arbitrary data</p>
@@ -275,7 +310,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bootstrap">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#162-178" title="Go to source code">bootstrap</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#183-199" title="Go to source code">bootstrap</a>( )</code>
 
 		<div class="description short">
 			<p>Create the Request and Response objects, and share the PSR-7 Emitter with the container</p>
@@ -305,7 +340,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_run">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#180-202" title="Go to source code">run</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#201-228" title="Go to source code">run</a>( )</code>
 
 		<div class="description short">
 			<p>Execute the Application</p>
@@ -335,7 +370,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRouteCollection">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#204-211" title="Go to source code">getRouteCollection</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#230-237" title="Go to source code">getRouteCollection</a>( )</code>
 
 		<div class="description short">
 			<p>Get the league/route router</p>
@@ -369,7 +404,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRequest">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#213-220" title="Go to source code">getRequest</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#239-246" title="Go to source code">getRequest</a>( )</code>
 
 		<div class="description short">
 			<p>Get the PSR-7 request</p>
@@ -403,7 +438,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResponse">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#222-229" title="Go to source code">getResponse</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#248-255" title="Go to source code">getResponse</a>( )</code>
 
 		<div class="description short">
 			<p>Get the PSR-7 response</p>
@@ -437,7 +472,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setResponse">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#231-241" title="Go to source code">setResponse</a>( <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#257-267" title="Go to source code">setResponse</a>( <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the PSR-7 response</p>
@@ -476,7 +511,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getEventEmitter">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#243-250" title="Go to source code">getEventEmitter</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#269-276" title="Go to source code">getEventEmitter</a>( )</code>
 
 		<div class="description short">
 			<p>Get the event Emitter to either listen or emitt events</p>
@@ -510,7 +545,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfig">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#252-259" title="Go to source code">getConfig</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#278-285" title="Go to source code">getConfig</a>( )</code>
 
 		<div class="description short">
 			<p>Return the application configuration</p>
@@ -544,7 +579,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#261-277" title="Go to source code">get</a>( <span>string <var>$id</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#287-303" title="Go to source code">get</a>( <span>string <var>$id</var></span> )</code>
 
 		<div class="description short">
 			<p>Finds an entry of the container by its identifier and returns it.</p>
@@ -588,7 +623,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_has">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#279-289" title="Go to source code">has</a>( <span>string <var>$id</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#305-315" title="Go to source code">has</a>( <span>string <var>$id</var></span> )</code>
 
 		<div class="description short">
 			<p>Returns true if the container can return an entry for the given identifier.
@@ -629,14 +664,14 @@ Returns false otherwise.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setConfig">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#291-299" title="Go to source code">setConfig</a>( <span>array <var>$config</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#317-327" title="Go to source code">setConfig</a>( <span>array <var>$config</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the array of config data</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the array of config data</p>
 
 
 				<h4>Parameters</h4>
@@ -668,14 +703,14 @@ Returns false otherwise.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getBasedir">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#301-306" title="Go to source code">getBasedir</a>( )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#329-336" title="Go to source code">getBasedir</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Get the set root directory of the project</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Get the set root directory of the project</p>
 
 
 
@@ -702,14 +737,14 @@ Returns false otherwise.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setBasedir">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#308-316" title="Go to source code">setBasedir</a>( <span>string <var>$basedir</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#338-348" title="Go to source code">setBasedir</a>( <span>string <var>$basedir</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the root directory of the project</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the root directory of the project</p>
 
 
 				<h4>Parameters</h4>
@@ -741,7 +776,7 @@ Returns false otherwise.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bootstrapRoutes">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#318-328" title="Go to source code">bootstrapRoutes</a>( <span>array <var>$routes</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#350-360" title="Go to source code">bootstrapRoutes</a>( <span>array <var>$routes</var></span> )</code>
 
 		<div class="description short">
 			<p>Takes an associative array of routeName => ['method'=>string, 'route'=>string, 'hsndler'=>callable]
@@ -778,7 +813,7 @@ and registers those routes</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bootstrapServices">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#330-339" title="Go to source code">bootstrapServices</a>( <span>array <var>$services</var></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#362-371" title="Go to source code">bootstrapServices</a>( <span>array <var>$services</var></span> )</code>
 
 		<div class="description short">
 			<p>Takes an associative array of $serviceName => $callable to share with the service container</p>
@@ -813,7 +848,7 @@ and registers those routes</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newTempStream">#</a>
-		<code><a href="source-class-Unicorn.App.Application.html#341-353" title="Go to source code">newTempStream</a>( <span>string|null <var>$string</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code><a href="source-class-Unicorn.App.Application.html#373-385" title="Go to source code">newTempStream</a>( <span>string|null <var>$string</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			<p>Optionally takes a string and returns a stream open to php://temp at r+</p>
@@ -1061,14 +1096,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#60-63" title="Go to source code"><var>$data</var></a>
+				<a href="source-class-Unicorn.App.Application.html#60-65" title="Go to source code"><var>$data</var></a>
 
 			<div class="description short">
-				
+				<p>An array of arbitrary data, could hold user data, non-formatted responses, etc</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>An array of arbitrary data, could hold user data, non-formatted responses, etc</p>
 
 			</div>
 		</td>
@@ -1086,14 +1121,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#64-67" title="Go to source code"><var>$eventEmitter</var></a>
+				<a href="source-class-Unicorn.App.Application.html#66-71" title="Go to source code"><var>$eventEmitter</var></a>
 
 			<div class="description short">
-				
+				<p>The event emittet</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The event emittet</p>
 
 			</div>
 		</td>
@@ -1111,14 +1146,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#68-71" title="Go to source code"><var>$container</var></a>
+				<a href="source-class-Unicorn.App.Application.html#72-77" title="Go to source code"><var>$container</var></a>
 
 			<div class="description short">
-				
+				<p>The DI container</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The DI container</p>
 
 			</div>
 		</td>
@@ -1136,14 +1171,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#72-75" title="Go to source code"><var>$config</var></a>
+				<a href="source-class-Unicorn.App.Application.html#78-83" title="Go to source code"><var>$config</var></a>
 
 			<div class="description short">
-				
+				<p>The application config data</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The application config data</p>
 
 			</div>
 		</td>
@@ -1161,14 +1196,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#76-79" title="Go to source code"><var>$routeCollection</var></a>
+				<a href="source-class-Unicorn.App.Application.html#84-89" title="Go to source code"><var>$routeCollection</var></a>
 
 			<div class="description short">
-				
+				<p>The router</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The router</p>
 
 			</div>
 		</td>
@@ -1186,14 +1221,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#80-83" title="Go to source code"><var>$response</var></a>
+				<a href="source-class-Unicorn.App.Application.html#90-95" title="Go to source code"><var>$response</var></a>
 
 			<div class="description short">
-				
+				<p>Uh, the response</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Uh, the response</p>
 
 			</div>
 		</td>
@@ -1211,14 +1246,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#84-87" title="Go to source code"><var>$request</var></a>
+				<a href="source-class-Unicorn.App.Application.html#96-101" title="Go to source code"><var>$request</var></a>
 
 			<div class="description short">
-				
+				<p>Uh-huh, the request</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>Uh-huh, the request</p>
 
 			</div>
 		</td>
@@ -1236,14 +1271,14 @@ arguments as well as the Event object</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Unicorn.App.Application.html#89-92" title="Go to source code"><var>$basedir</var></a>
+				<a href="source-class-Unicorn.App.Application.html#103-108" title="Go to source code"><var>$basedir</var></a>
 
 			<div class="description short">
-				
+				<p>The root project directory</p>
 			</div>
 
 			<div class="description detailed hidden">
-				
+				<p>The root project directory</p>
 
 			</div>
 		</td>
