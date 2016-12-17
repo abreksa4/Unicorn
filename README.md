@@ -4,7 +4,7 @@ _A tiny single class RAD PSR-7 web application "framework" maintained by [Andrew
 
 Unicorn is essentially a wrapper around [zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple 
 of ["The PHP League"](https://thephpleague.com/) packages ([league/event](http://event.thephpleague.com/2.0/), 
-[league/container](http://container.thephpleague.com/), [league/route](http://route.thephpleague.com/)).
+[league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/)).
 
 Still in it's infancy, Unicorn was born from my frustrations of wanting a framework to handle the plumbing for me, but
 not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
@@ -12,17 +12,17 @@ not force a specific architecture or style, as applications tend to get very dom
 - Want to build a closure application? Easy. 
 - Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend 
 [league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object follows the singleton pattern 
-and is accessible via `Application::getInstance()`. I would include support for that by default, but I feel this is not 
-always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
+and is accessible via `Application::getInstance()`. I would include support for league/pipeline that by default, but I 
+feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
 
 Unicorn attempts to do only the minimum, providing a service container, a router, a few event hooks for the various 
-stages of the application lifecycle, and a PSR-7 implementation (parser and emitter). And if you'd like, consider it an
-anti-framework framework. You might have to write some code... ;)
+stages of the application lifecycle, and a PSR-7 implementation. And if you'd like, consider it an anti-framework 
+framework. **You might have to write some code...** ;)
 
 ## Installation
-Unicorn isn't hosted on Packagegist as of yet, so:
+Unicorn isn't hosted on Packagist as of yet, so:
 
 1. Add the following to your `composer.json`:
 	```
@@ -49,6 +49,7 @@ _As defined in \Unicorn\App\Application_
 	const EVENT_ROUTE_EXCEPTION = 'app.route.exception';
 	const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';
 	const EVENT_RENDER = 'app.render';
+	const EVENT_EMIT_ERROR = 'app.emit.exception';
 	const EVENT_FINISH = 'app.finish';
 ```
 
@@ -58,11 +59,13 @@ Fairly simple, see the [league/event](http://event.thephpleague.com/2.0/) docume
 
 ## Routing
 You can access the router via `Application::getInstance()->getRouteCollection()`. From there check out the 
-[league/route](http://route.thephpleague.com/) docs for more info. A note on the return values of methods/closures/etc
-called on dispatch: If `NULL` is returned (or nothing at all, implied) then `Application->$response` is not updated, but
-the emitting process is carried out. However, if you return `FALSE`, the emitting process is not carried out and 
-`Application::EVENT_RENDER` (needless to say, `Application::EVENT_EMIT_ERROR` is not) is not emitted either. This can be 
-used to run other, non-Unicorn, code or frameworks on specific routes.
+[league/route](http://route.thephpleague.com/) docs for more info. 
+
+A note on the return values of methods/closures/etc called on dispatch: If `NULL` is returned (or nothing at all, 
+implied) then `Application->$response` is not updated, but the emitting process is carried out. However, if you return 
+`FALSE`, the emitting process is not carried out and `Application::EVENT_RENDER` (needless to say, 
+`Application::EVENT_EMIT_ERROR`) is not emitted either. This can be used to run other, "non-Unicorn", code or frameworks 
+on specific routes.
 
 ## PSR-7
 Really? Ok, well checkout [php-fig.org](http://www.php-fig.org/psr/psr-7/) for more info.
