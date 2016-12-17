@@ -423,7 +423,7 @@
 </span></span><span id="344" class="l"><a href="#344">344: </a><span class="php-comment">     * @param string|null $string
 </span></span><span id="345" class="l"><a href="#345">345: </a><span class="php-comment">     * @return StreamInterface
 </span></span><span id="346" class="l"><a href="#346">346: </a><span class="php-comment">     */</span>
-</span><span id="347" class="l"><a href="#347">347: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> stringToStream(<span class="php-var">$string</span> = <span class="php-keyword1">NULL</span>){
+</span><span id="347" class="l"><a href="#347">347: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> newTempStream(<span class="php-var">$string</span> = <span class="php-keyword1">NULL</span>){
 </span><span id="348" class="l"><a href="#348">348: </a>        <span class="php-var">$stream</span> = <span class="php-keyword1">new</span> \Zend\Diactoros\Stream(<span class="php-keyword2">fopen</span>(<span class="php-quote">'php://temp'</span>, <span class="php-quote">'r+'</span>));
 </span><span id="349" class="l"><a href="#349">349: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$string</span>)){
 </span><span id="350" class="l"><a href="#350">350: </a>            <span class="php-var">$stream</span>-&gt;write(<span class="php-var">$string</span>);
