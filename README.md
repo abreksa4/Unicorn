@@ -76,7 +76,7 @@ parsed and added to `Application::getInstance()->getConfig()`. And as always, fe
 convention and do whatever you please.
 
 Regardless of how the configuration is set, on `Application->bootstrap()` (after `EVENT_BOOTSTRAP`), if there is any of 
-`services`, `routes` `eventListeners` in `Application->getConfig()`, the values of these keys are passed to 
+`services`, `routes`, or `eventListeners` in `Application->getConfig()`, the values of these keys are passed to 
 `Application->bootstrapServices()`, `Application->bootstrapRoutes()` and `Application->bootstrapEventListeners()` 
 respectively.
 
