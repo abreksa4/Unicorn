@@ -1,7 +1,7 @@
 # [Unicorn](https://github.com/abreksa4/Unicorn)
 _A tiny single class RAD PSR-7 web application "framework"_
 
-Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple of [The PHP League](https://thephpleague.com/) packages: [league/event](http://event.thephpleague.com/2.0/), league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/).
+Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple of [The PHP League](https://thephpleague.com/) packages: [league/event](http://event.thephpleague.com/2.0/), [league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/).
 
 Still in it's infancy, Unicorn was born from my frustrations of wanting a framework to handle the plumbing for me, but not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
 
