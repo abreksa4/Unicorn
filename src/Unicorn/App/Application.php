@@ -54,7 +54,7 @@ class Application implements ContainerInterface {
 	 * Runs in case of an \Exception during emitting the PSR-7 response, listeners get $this and $exceptions as
 	 * arguments as well as the Event object
 	 */
-	const EVENT_EMIT_ERROR = 'app.emit.exception';
+	const EVENT_EMIT_EXCEPTION = 'app.emit.exception';
 	/**
 	 * Runs after the PSR-7 response has been emitted
 	 */
@@ -315,7 +315,7 @@ class Application implements ContainerInterface {
 			try {
 				$this->getContainer()->get('emitter')->emit($this->getResponse());
 			} catch (\Exception $exception) {
-				$this->getEventEmitter()->emit(self::EVENT_EMIT_ERROR, $this, $exception);
+				$this->getEventEmitter()->emit(self::EVENT_EMIT_EXCEPTION, $this, $exception);
 			}
 		}
 		$this->getEventEmitter()->emit(self::EVENT_FINISH, $this);

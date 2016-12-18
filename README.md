@@ -40,7 +40,7 @@ _As defined in \Unicorn\App\Application_
 	const EVENT_ROUTE_EXCEPTION = 'app.route.exception';
 	const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';
 	const EVENT_RENDER = 'app.render';
-	const EVENT_EMIT_ERROR = 'app.emit.exception';
+	const EVENT_EMIT_EXCEPTION = 'app.emit.exception';
 	const EVENT_FINISH = 'app.finish';
 ```
 
