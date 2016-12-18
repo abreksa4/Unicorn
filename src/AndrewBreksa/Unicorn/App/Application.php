@@ -3,7 +3,7 @@
  * Copyright (c) 2016 Andrew Breksa
  */
 
-namespace Unicorn\App;
+namespace AndrewBreksa\Unicorn\App;
 
 
 use Interop\Container\ContainerInterface;

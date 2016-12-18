@@ -2,11 +2,11 @@
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 //Create the App
-$app = \Unicorn\App\Application::getInstance();
+$app = \AndrewBreksa\Unicorn\App\Application::getInstance();
 $app->bootstrap();
 
 //add something to "render" the output
-$app->getEventEmitter()->addListener(Unicorn\App\Application::EVENT_RENDER, function (\League\Event\Event $event, \Unicorn\App\Application $application) {
+$app->getEventEmitter()->addListener(AndrewBreksa\Unicorn\App\Application::EVENT_RENDER, function (\League\Event\Event $event, \AndrewBreksa\Unicorn\App\Application $application) {
 	$application->getResponse()->getBody()->rewind();
 	$data = $application->getResponse()->getBody()->getContents();
 	$newBody = new \Zend\Diactoros\Stream(fopen('php://temp', 'r+'));
@@ -21,7 +21,7 @@ $app->getContainer()->get('routeCollection')->map('GET', '/', function (\Psr\Htt
 });
 
 //register a 404 handler
-$app->getEventEmitter()->addListener(\Unicorn\App\Application::EVENT_ROUTE_EXCEPTION, function (\League\Event\Event $event, \Unicorn\App\Application $app, \Exception $exception) {
+$app->getEventEmitter()->addListener(\AndrewBreksa\Unicorn\App\Application::EVENT_ROUTE_EXCEPTION, function (\League\Event\Event $event, \AndrewBreksa\Unicorn\App\Application $app, \Exception $exception) {
 	/**
 	 * @var $response \Psr\Http\Message\ResponseInterface
 	 */
