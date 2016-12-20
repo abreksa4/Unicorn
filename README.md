@@ -49,7 +49,7 @@ Each event is emitted before the action takes place (if any, `Application::EVENT
 ## Routing
 You can access the router via `Application::getInstance()->getRouteCollection()`. From there check out the [league/route](http://route.thephpleague.com/) docs for more info. 
 
-A note on the return values of methods/closures/etc called on dispatch: If `NULL` is returned (or nothing at all, implied) then `Application->$response` is not updated, but the emitting process is carried out. However, if you return `FALSE`, the emitting process is not carried out and `Application::EVENT_RENDER` (needless to say, `Application::EVENT_EMIT_ERROR`) is not emitted either. This can be used to run other, "non-Unicorn", code or frameworks on specific routes.
+A note on the return values of methods/closures/etc called on dispatch: If `NULL` is returned (or nothing at all, implied) then `Application->$response` is not updated, but the emitting process is carried out. However, if you return `FALSE`, the emitting process is not carried out and `Application::EVENT_RENDER` (needless to say, `Application::EVENT_EMIT_EXCEPTION`) is not emitted either. This can be used to run other, "non-Unicorn", code or frameworks on specific routes.
 
 ## PSR-7
 Really? Ok, well checkout [php-fig.org](http://www.php-fig.org/psr/psr-7/) for more info.
