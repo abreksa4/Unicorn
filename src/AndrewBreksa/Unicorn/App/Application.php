@@ -114,14 +114,11 @@ class Application implements ContainerInterface {
 	protected $basedir;
 
 	/**
-	 * If using the Singleton pattern for Unicorn, don't call this directly. Instead, call Application::getInstance().
-	 *
-	 * You might, however, want to use multiple copies of Unicorn in one app. In that case, feel free to ignore the
-	 * Singleton patten altogether.
+	 * Don't call this directly. Instead, call Application::getInstance().
 	 *
 	 * Application constructor.
 	 */
-	public function __construct($basedir) {
+	private function __construct($basedir) {
 		$this->basedir = $basedir;
 		$this->eventEmitter = new Emitter();
 		$this->container = new Container();
