@@ -118,7 +118,7 @@ class Application implements ContainerInterface {
 	 *
 	 * Application constructor.
 	 */
-	private function __construct($basedir) {
+	private function __construct($basedir = NULL) {
 		$this->basedir = $basedir;
 		$this->eventEmitter = new Emitter();
 		$this->container = new Container();
@@ -127,11 +127,13 @@ class Application implements ContainerInterface {
 		);
 		$this->getContainer()->delegate($this);
 		$this->routeCollection = new RouteCollection($this->getContainer());
-		foreach (glob($this->basedir . '/config/autoload/*.php') as $file) {
-			$this->config = array_merge($this->config, include($file));
-		}
-		foreach (glob($this->basedir . '/config/autoload/*.json') as $file) {
-			$this->config = array_merge($this->config, json_decode(file_get_contents($file), TRUE));
+		if(!is_null($basedir)) {
+			foreach (glob($this->basedir . '/config/autoload/*.php') as $file) {
+				$this->config = array_merge($this->config, include($file));
+			}
+			foreach (glob($this->basedir . '/config/autoload/*.json') as $file) {
+				$this->config = array_merge($this->config, json_decode(file_get_contents($file), TRUE));
+			}
 		}
 		$this->getContainer()->share(Application::class, $this);
 	}
@@ -154,9 +156,6 @@ class Application implements ContainerInterface {
 	 */
 	public static function getInstance($basedir = NULL) {
 		if (Application::$instance == NULL) {
-			if (is_null($basedir)) {
-				throw new \InvalidArgumentException('$basedir is required on initial Application creation');
-			}
 			Application::$instance = new Application($basedir);
 		}
 
