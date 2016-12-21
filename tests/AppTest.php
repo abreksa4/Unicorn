@@ -101,6 +101,9 @@ class AppTest extends PHPUnit_Framework_TestCase {
 		self::$app->getResponse()->getBody()->rewind();
 		$bodyData = json_decode(self::$app->getResponse()->getBody()->getContents(), TRUE);
 		self::assertEquals(404, self::$app->getResponse()->getStatusCode(), '404 not returned on a 404 request');
+		self::assertArrayHasKey('version', $bodyData, 'response does not have the version key');
+		self::assertEquals(\AndrewBreksa\Unicorn\App\Application::VERSION, $bodyData['version'], 'response does not have the proper version');
+
 	}
 
 	public function test500() {
