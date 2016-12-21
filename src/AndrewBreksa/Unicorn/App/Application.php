@@ -128,6 +128,8 @@ class Application implements ContainerInterface
     protected $render = true;
 
     /**
+     * If the response will be emitted
+     *
      * @return bool
      */
     public function isEmit()
@@ -136,6 +138,8 @@ class Application implements ContainerInterface
     }
 
     /**
+     * Set whether the response will be emitted
+     *
      * @param bool $emit
      *
      * @return Application
@@ -147,6 +151,8 @@ class Application implements ContainerInterface
     }
 
     /**
+     * Whether the render event with be emitted
+     *
      * @return bool
      */
     public function isRender()
@@ -155,6 +161,8 @@ class Application implements ContainerInterface
     }
 
     /**
+     * Set whether the render event will be emitted
+     *
      * @param bool $render
      *
      * @return Application
