@@ -1,0 +1,11 @@
+<!--
+  ~ Copyright (c) 2016 Andrew Breksa
+  -->
+
+<phpunit>
+    <testsuites>
+        <testsuite name="basic">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
