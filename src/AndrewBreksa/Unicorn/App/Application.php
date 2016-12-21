@@ -187,6 +187,16 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * @param \Psr\Http\Message\ServerRequestInterface $request
+	 *
+	 * @return Application
+	 */
+	public function setRequest($request) {
+		$this->request = $request;
+		return $this;
+	}
+
+	/**
 	 * Get the league/container container
 	 *
 	 * @return \League\Container\Container
