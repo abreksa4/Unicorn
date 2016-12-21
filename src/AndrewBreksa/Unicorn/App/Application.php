@@ -162,6 +162,15 @@ class Application implements ContainerInterface {
 	}
 
 	/**
+	 * Sets the instance to null, useful for testing
+	 */
+	public static function destroy(){
+		if(!is_null(self::$instance)){
+			self::$instance = NULL;
+		}
+	}
+
+	/**
 	 * Don't call this directly. Instead, call Application::getInstance().
 	 *
 	 * Application constructor.
@@ -183,7 +192,7 @@ class Application implements ContainerInterface {
 				$this->config = array_merge($this->config, json_decode(file_get_contents($file), TRUE));
 			}
 		}
-		$this->getContainer()->share(Application::class, $this);
+		$this->getContainer()->share(self::class, $this);
 	}
 
 	/**
@@ -213,11 +222,11 @@ class Application implements ContainerInterface {
 	 * @throws \InvalidArgumentException if the $basedir is not set on initial creation
 	 */
 	public static function getInstance($basedir = NULL) {
-		if (Application::$instance == NULL) {
-			Application::$instance = new Application($basedir);
+		if (self::$instance == NULL) {
+			self::$instance = new self($basedir);
 		}
 
-		return Application::$instance;
+		return self::$instance;
 	}
 
 	/**
