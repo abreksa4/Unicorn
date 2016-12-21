@@ -1,6 +1,6 @@
 {
   "name": "andrewbreksa/unicorn",
-  "description": "",
+  "description": "A tiny single class RAD PSR-7 web application \"framework\"",
   "minimum-stability": "dev",
   "license": "MIT",
   "version": "1.0.0",
