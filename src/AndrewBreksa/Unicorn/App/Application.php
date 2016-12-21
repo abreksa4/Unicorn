@@ -114,6 +114,54 @@ class Application implements ContainerInterface {
 	protected $basedir;
 
 	/**
+	 * If the response should be emitted
+	 *
+	 * @var bool
+	 */
+	protected $emit = TRUE;
+
+	/**
+	 * If the render event should be emitted
+	 *
+	 * @var bool
+	 */
+	protected $render = TRUE;
+
+	/**
+	 * @return bool
+	 */
+	public function isEmit() {
+		return $this->emit;
+	}
+
+	/**
+	 * @param bool $emit
+	 *
+	 * @return Application
+	 */
+	public function setEmit($emit) {
+		$this->emit = $emit;
+		return $this;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isRender() {
+		return $this->render;
+	}
+
+	/**
+	 * @param bool $render
+	 *
+	 * @return Application
+	 */
+	public function setRender($render) {
+		$this->render = $render;
+		return $this;
+	}
+
+	/**
 	 * Don't call this directly. Instead, call Application::getInstance().
 	 *
 	 * Application constructor.
@@ -292,22 +340,23 @@ class Application implements ContainerInterface {
 	 * Execute the Application
 	 */
 	public function run() {
-		$emit = TRUE;
 		$this->eventEmitter->emit(self::EVENT_DISPATCH, $this);
 		try {
 			$result = $this->getRouteCollection()->dispatch($this->getRequest(), $this->getResponse());
 			if (!is_null($result) && $result instanceof ResponseInterface) {
 				$this->setResponse($result);
 			} elseif ($result == FALSE) {
-				$emit = FALSE;
+				$this->setEmit(FALSE);
 			}
 		} catch (NotFoundException $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_ROUTE_EXCEPTION, $this, $exception);
 		} catch (\Exception $exception) {
 			$this->getEventEmitter()->emit(self::EVENT_DISPATCH_EXCEPTION, $this, $exception);
 		}
-		if ($emit === TRUE) {
+		if($this->isRender()){
 			$this->getEventEmitter()->emit(self::EVENT_RENDER, $this);
+		}
+		if ($this->isEmit() === TRUE) {
 			try {
 				$this->getContainer()->get('emitter')->emit($this->getResponse());
 			} catch (\Exception $exception) {
