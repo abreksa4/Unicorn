@@ -18,19 +18,7 @@ Still in it's infancy, Unicorn was born from my frustrations of wanting a framew
 Unicorn attempts to do only the minimum, providing a service container, a router, a few event hooks for the various stages of the application lifecycle, and a PSR-7 implementation. And if you'd like, consider it an anti-framework framework. **You might have to write some code...** ;)
 
 ## Installation
-Unicorn isn't hosted on Packagist as of yet, so:
-
-1. Add the following to your `composer.json`:
-	```
-	"repositories": [
-        {
-          "type": "git",
-          "url": "https://github.com/abreksa4/Unicorn"
-        }
-      ]
-    ```
-
-2. Run `composer require andrewbreksa/unicorn`
+`composer require andrewbreksa/unicorn`
       
 ## Usage
 Check out the example [index.php](https://github.com/abreksa4/Unicorn/blob/master/public/index.php) to see how to setup a basic app. (And I mean basic).
