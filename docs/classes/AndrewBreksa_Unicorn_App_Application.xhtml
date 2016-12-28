@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - AndrewBreksa\Unicorn\App\Application</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#AndrewBreksa_Unicorn_App">AndrewBreksa\Unicorn\App</a>
+          </li>
+          <li class="separator">Application</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="#history">History</a>
+          </li>
+          <li>
+            <a href="../source/AndrewBreksa/Unicorn/App/Application.php.xhtml#line26">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>AndrewBreksa\Unicorn\App\</small>Application</h1>
+        <h4>A tiny single class RAD PSR-7 web application "framework"</h4>
+        <p/>
+        <ul>
+          <li>Author: Andrew Breksa &lt;andrewbreksa.com&gt;</li>
+        </ul>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Application
+                implements
+                ContainerInterface
+            {<br/><ul class="none"><li>// constants</li><li>const VERSION = '0';</li><li>const EVENT_BOOTSTRAP = 'app.bootstrap';</li><li>const EVENT_DISPATCH = 'app.dispatch';</li><li>const EVENT_ROUTE_EXCEPTION = 'app.route.exception';</li><li>const EVENT_DISPATCH_EXCEPTION = 'app.dispatch.exception';</li><li>const EVENT_RENDER = 'app.render';</li><li>const EVENT_EMIT_EXCEPTION = 'app.emit.exception';</li><li>const EVENT_FINISH = 'app.finish';</li></ul><ul class="none"><li>// members</li><li>public array <a href="#members">$data</a> =
+                        ;
+                    </li><li>public array <a href="#members">$config</a> =
+                        ;
+                    </li><li>protected <span title="\League\Event\Emitter">Emitter</span> <a href="#members">$eventEmitter</a>;
+                    </li><li>protected <span title="\League\Container\Container">Container</span> <a href="#members">$container</a>;
+                    </li><li>protected <span title="League\Route\RouteCollection">RouteCollection</span> <a href="#members">$routeCollection</a>;
+                    </li><li>protected <span title="Psr\Http\Message\ResponseInterface">ResponseInterface</span> <a href="#members">$response</a>;
+                    </li><li>protected <span title="Psr\Http\Message\ServerRequestInterface">ServerRequestInterface</span> <a href="#members">$request</a>;
+                    </li><li>protected  <a href="#members">$basedir</a>;
+                    </li><li>protected <span title="AndrewBreksa\Unicorn\App\bool">bool</span> <a href="#members">$emit</a> =
+                        true;
+                    </li><li>protected <span title="AndrewBreksa\Unicorn\App\bool">bool</span> <a href="#members">$render</a> =
+                        true;
+                    </li></ul><ul class="none"><li>// methods</li><li>public bool <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/isEmit.xhtml">isEmit</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setEmit.xhtml">setEmit</a>()
+                    </li><li>public bool <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/isRender.xhtml">isRender</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setRender.xhtml">setRender</a>()
+                    </li><li>public void <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/__construct.xhtml">__construct</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setRequest.xhtml">setRequest</a>()
+                    </li><li>public Container <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getContainer.xhtml">getContainer</a>()
+                    </li><li>public static StreamInterface <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/newTempStream.xhtml">newTempStream</a>()
+                    </li><li>public array <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getData.xhtml">getData</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setData.xhtml">setData</a>()
+                    </li><li>public void <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrap.xhtml">bootstrap</a>()
+                    </li><li>public array <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getConfig.xhtml">getConfig</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setConfig.xhtml">setConfig</a>()
+                    </li><li>public void <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrapServices.xhtml">bootstrapServices</a>()
+                    </li><li>public void <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrapRoutes.xhtml">bootstrapRoutes</a>()
+                    </li><li>public void <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrapEventListeners.xhtml">bootstrapEventListeners</a>()
+                    </li><li>public RouteCollection <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getRouteCollection.xhtml">getRouteCollection</a>()
+                    </li><li>public void <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/run.xhtml">run</a>()
+                    </li><li>public ServerRequestInterface <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getRequest.xhtml">getRequest</a>()
+                    </li><li>public ResponseInterface <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getResponse.xhtml">getResponse</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setResponse.xhtml">setResponse</a>()
+                    </li><li>public Emitter <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getEventEmitter.xhtml">getEventEmitter</a>()
+                    </li><li>public mixed <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/get.xhtml">get</a>()
+                    </li><li>public boolean <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/has.xhtml">has</a>()
+                    </li><li>public string <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getBasedir.xhtml">getBasedir</a>()
+                    </li><li>public Application <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setBasedir.xhtml">setBasedir</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Implements</h4>
+          <ul>
+            <li>Interop\Container\ContainerInterface</li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="VERSION">VERSION</td>
+              <td>'0'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_BOOTSTRAP">EVENT_BOOTSTRAP</td>
+              <td>'app.bootstrap'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_DISPATCH">EVENT_DISPATCH</td>
+              <td>'app.dispatch'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_ROUTE_EXCEPTION">EVENT_ROUTE_EXCEPTION</td>
+              <td>'app.route.exception'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_DISPATCH_EXCEPTION">EVENT_DISPATCH_EXCEPTION</td>
+              <td>'app.dispatch.exception'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_RENDER">EVENT_RENDER</td>
+              <td>'app.render'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_EMIT_EXCEPTION">EVENT_EMIT_EXCEPTION</td>
+              <td>'app.emit.exception'</td>
+            </tr>
+            <tr>
+              <td id="EVENT_FINISH">EVENT_FINISH</td>
+              <td>'app.finish'</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="basedir"><strong>$basedir</strong>
+                —
+                string<br/><span class="indent">The root project directory</span></li>
+            <li id="container"><strong>$container</strong>
+                —
+                <a title="\League\Container\Container" href="../classes/_League_Container_Container.xhtml">\League\Container\Container</a><br/><span class="indent">The DI container</span></li>
+            <li id="emit"><strong>$emit</strong>
+                —
+                <a title="AndrewBreksa\Unicorn\App\bool" href="../classes/AndrewBreksa_Unicorn_App_bool.xhtml">AndrewBreksa\Unicorn\App\bool</a><br/><span class="indent">If the response should be emitted</span></li>
+            <li id="eventEmitter"><strong>$eventEmitter</strong>
+                —
+                <a title="\League\Event\Emitter" href="../classes/_League_Event_Emitter.xhtml">\League\Event\Emitter</a><br/><span class="indent">The event emittet</span></li>
+            <li id="render"><strong>$render</strong>
+                —
+                <a title="AndrewBreksa\Unicorn\App\bool" href="../classes/AndrewBreksa_Unicorn_App_bool.xhtml">AndrewBreksa\Unicorn\App\bool</a><br/><span class="indent">If the render event should be emitted</span></li>
+            <li id="request"><strong>$request</strong>
+                —
+                <a title="Psr\Http\Message\ServerRequestInterface" href="../classes/Psr_Http_Message_ServerRequestInterface.xhtml">Psr\Http\Message\ServerRequestInterface</a><br/><span class="indent">Uh-huh, the request</span></li>
+            <li id="response"><strong>$response</strong>
+                —
+                <a title="Psr\Http\Message\ResponseInterface" href="../classes/Psr_Http_Message_ResponseInterface.xhtml">Psr\Http\Message\ResponseInterface</a><br/><span class="indent">Uh, the response</span></li>
+            <li id="routeCollection"><strong>$routeCollection</strong>
+                —
+                <a title="League\Route\RouteCollection" href="../classes/League_Route_RouteCollection.xhtml">League\Route\RouteCollection</a><br/><span class="indent">The router</span></li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="config"><strong>$config</strong>
+                —
+                array<br/><span class="indent">The application config data</span></li>
+            <li id="data"><strong>$data</strong>
+                —
+                array<br/><span class="indent">An array of arbitrary data, could hold user data, non-formatted responses, etc</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="__construct"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/__construct.xhtml">__construct()</a>
+                — Don't call this directly. Instead, call Application::getInstance().</li>
+            <li id="bootstrap"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrap.xhtml">bootstrap()</a>
+                — Create the Request and Response objects, and share the PSR-7 Emitter with the container</li>
+            <li id="bootstrapEventListeners"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrapEventListeners.xhtml">bootstrapEventListeners()</a>
+                — Takes an array of associative arrays with event, handler, and optionally priority.</li>
+            <li id="bootstrapRoutes"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrapRoutes.xhtml">bootstrapRoutes()</a>
+                — Takes an associative array of routeName =&gt; ['method'=&gt;string, 'route'=&gt;string, 'hsndler'=&gt;callable] and registers those routes</li>
+            <li id="bootstrapServices"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/bootstrapServices.xhtml">bootstrapServices()</a>
+                — Takes an associative array of $serviceName =&gt; $callable to share with the service container</li>
+            <li id="get"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/get.xhtml">get()</a>
+                — Finds an entry of the container by its identifier and returns it.</li>
+            <li id="getBasedir"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getBasedir.xhtml">getBasedir()</a>
+                — Get the set root directory of the project</li>
+            <li id="getConfig"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getConfig.xhtml">getConfig()</a>
+                — Return the application configuration</li>
+            <li id="getContainer"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getContainer.xhtml">getContainer()</a>
+                — Get the league/container container</li>
+            <li id="getData"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getData.xhtml">getData()</a>
+                — Get arbitrary data</li>
+            <li id="getEventEmitter"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getEventEmitter.xhtml">getEventEmitter()</a>
+                — Get the event Emitter to either listen or emitt events</li>
+            <li id="getRequest"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getRequest.xhtml">getRequest()</a>
+                — Get the PSR-7 request</li>
+            <li id="getResponse"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getResponse.xhtml">getResponse()</a>
+                — Get the PSR-7 response</li>
+            <li id="getRouteCollection"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/getRouteCollection.xhtml">getRouteCollection()</a>
+                — Get the league/route router</li>
+            <li id="has"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/has.xhtml">has()</a>
+                — Returns true if the container can return an entry for the given identifier.</li>
+            <li id="isEmit"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/isEmit.xhtml">isEmit()</a>
+                — If the response will be emitted</li>
+            <li id="isRender"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/isRender.xhtml">isRender()</a>
+                — Whether the render event with be emitted</li>
+            <li id="newTempStream"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/newTempStream.xhtml">newTempStream()</a>
+                — Optionally takes a string and returns a stream open to php://temp at r+</li>
+            <li id="run"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/run.xhtml">run()</a>
+                — Execute the Application</li>
+            <li id="setBasedir"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setBasedir.xhtml">setBasedir()</a>
+                — Set the root directory of the project</li>
+            <li id="setConfig"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setConfig.xhtml">setConfig()</a>
+                — Set the array of config data</li>
+            <li id="setData"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setData.xhtml">setData()</a>
+                — Set arbitrary data</li>
+            <li id="setEmit"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setEmit.xhtml">setEmit()</a>
+                — Set whether the response will be emitted</li>
+            <li id="setRender"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setRender.xhtml">setRender()</a>
+                — Set whether the render event will be emitted</li>
+            <li id="setRequest">
+              <a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setRequest.xhtml">setRequest()</a>
+            </li>
+            <li id="setResponse"><a title="AndrewBreksa\Unicorn\App\Application" href="../classes/AndrewBreksa_Unicorn_App_Application/setResponse.xhtml">setResponse()</a>
+                — Set the PSR-7 response</li>
+          </ul>
+        </div>
+        <h2 id="history">History</h2>
+        <ul class="styled history">
+          <li>
+            <h3>2016-12-28T04:37:24+00:00 (commit #<span title="0c487e935e3c099776c064108d47628d3c8256ce">0c487e9</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">remove singleton support</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-21T22:42:42+00:00 (commit #<span title="203761a346de2d3879704b390905f32452531725">203761a</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">add missing phpdocs and update docs</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-21T22:05:29+00:00 (commit #<span title="ba93db958a702eed779da1023b77a6f5a6b09cac">ba93db9</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">code reformat</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-21T21:23:40+00:00 (commit #<span title="40c16a8c6f7be10455996b49075fed952426d585">40c16a8</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">add destroy method and replace Application with self internally</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-21T20:38:06+00:00 (commit #<span title="ec969cb57123f03cc79ba8ce861ed60f4842d6fb">ec969cb</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">add setRequest method</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-21T20:30:35+00:00 (commit #<span title="95ef5ef80c6bb86fa78fafe38f0861f6435eced1">95ef5ef</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">add specific emit and render control via getter/setter</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-20T01:52:56+00:00 (commit #<span title="7fec9fc62c377652d93ff6f35e923c6ebad6f55b">7fec9fc</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">remove mandatory baseDir on getInstance, now config/autoload is only checked and parsed if it is provided</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-20T01:24:03+00:00 (commit #<span title="1a5de9c7737290cea2392682c7a77aea22b48189">1a5de9c</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">restore private __construct to be compliant with the singleton pattern</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-18T20:38:30+00:00 (commit #<span title="de64f632f68da6fe6564482ed8c2e1e1056488fe">de64f63</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">add AndrewBreksa as top-level namespace</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-18T19:48:51+00:00 (commit #<span title="0ccfc1825bca24adaba6836f427da469e2cef4e8">0ccfc18</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">rename EVENT_EMIT_ERROR to EVENT_EMIT_EXCEPTION</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-17T10:18:59+00:00 (commit #<span title="9559c998cfbd785f9ce1b2089c797f9dc5979e7e">9559c99</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">add eventListeners automagical bootstrapping</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-17T10:05:59+00:00 (commit #<span title="a9c9f248241eec6b35045221fbf9d059ac802c68">a9c9f24</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">update phpdocs</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-17T10:05:30+00:00 (commit #<span title="7c018656fdea10a74fdb93603553b05011bbfc3a">7c01865</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">fix whitespace typo</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-17T10:04:11+00:00 (commit #<span title="0187546224c94581f5bccea1bd9e517bbd472549">0187546</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">update README and docs, as well as code reformat</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-17T09:55:59+00:00 (commit #<span title="03e3aa17321c50679245948b76dbe070c4770b0a">03e3aa1</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">misc updates for better readability</pre>
+            </div>
+          </li>
+          <li>
+            <h3>2016-12-17T09:45:46+00:00 (commit #<span title="74050614c1ee9d98c5d21e57977f0eb78016166c">7405061</span>)</h3>
+            <div>
+              <p>
+                        Author: Andrew Breksa (abreksa4@gmail.com) /
+                        Commiter: Andrew Breksa (abreksa4@gmail.com)
+                    </p>
+              <pre class="wrapped">update phpdocs and docs/</pre>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.9.0 - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

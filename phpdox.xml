@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright (c) 2016 Andrew Breksa
+  -->
+
+<phpdox xmlns="http://xml.phpdox.net/config">
+    <project name="Unicorn" source="${basedir}/src" workdir="${basedir}/build/xml">
+        <collector backend="parser" />
+        <generator output="${basedir}/docs">
+            <build engine="html" />
+            <enrich base="${basedir}/docs">
+                <source type="git">
+                    <git binary="/usr/bin/git" />
+                    <history enabled="true" limit="15" cache="${phpDox.project.workdir}/gitlog.xml" />
+                </source>
+            </enrich>
+        </generator>
+    </project>
+</phpdox>

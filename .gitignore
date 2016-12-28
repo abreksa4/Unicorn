@@ -3,3 +3,4 @@ vendor/
 composer.phar
 apigen.phar
 .php_cs.cache
+build/
