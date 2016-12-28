@@ -60,10 +60,6 @@ class Application implements ContainerInterface
      */
     const EVENT_FINISH = 'app.finish';
     /**
-     * @var Application
-     */
-    private static $instance = null;
-    /**
      * An array of arbitrary data, could hold user data, non-formatted responses, etc
      *
      * @var array
@@ -174,21 +170,11 @@ class Application implements ContainerInterface
     }
 
     /**
-     * Sets the instance to null, useful for testing
-     */
-    public static function destroy()
-    {
-        if (!is_null(self::$instance)) {
-            self::$instance = null;
-        }
-    }
-
-    /**
      * Don't call this directly. Instead, call Application::getInstance().
      *
      * Application constructor.
      */
-    private function __construct($basedir = null)
+    public function __construct($basedir = null)
     {
         $this->basedir = $basedir;
         $this->eventEmitter = new Emitter();
@@ -228,22 +214,6 @@ class Application implements ContainerInterface
     public function getContainer()
     {
         return $this->container;
-    }
-
-    /**
-     * Get the singleton instance of Application
-     *
-     * @param string|null $basedir
-     * @return Application
-     * @throws \InvalidArgumentException if the $basedir is not set on initial creation
-     */
-    public static function getInstance($basedir = null)
-    {
-        if (self::$instance == null) {
-            self::$instance = new self($basedir);
-        }
-
-        return self::$instance;
     }
 
     /**

@@ -11,7 +11,7 @@ Still in it's infancy, Unicorn was born from my frustrations of wanting a framew
 
 - Want to build a closure application? Easy. 
 - Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend 
-[league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object follows the singleton pattern and is ccessible via `Application::getInstance()`. I would include support for league/pipeline by default, but I feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
+[league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object adds itself to the service container which are auto-wired if created via the container. I would include support for league/pipeline by default, but I feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
 

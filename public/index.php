@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 //Create the App
-$app = \AndrewBreksa\Unicorn\App\Application::getInstance();
+$app = new AndrewBreksa\Unicorn\App\Application();
 $app->bootstrap();
 
 //add something to "render" the output
@@ -17,6 +17,7 @@ $app->getEventEmitter()->addListener(AndrewBreksa\Unicorn\App\Application::EVENT
 //add our GET:/ route
 $app->getContainer()->get('routeCollection')->map('GET', '/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
 	$response->getBody()->write('Hello World!');
+
 	return $response;
 });
 
@@ -39,6 +40,7 @@ $app->bootstrapRoutes([
 		'route'   => '/config-routes',
 		'handler' => function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
 			$response->getBody()->write('Hello World from config!');
+
 			return $response;
 		},
 	],
