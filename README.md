@@ -5,13 +5,13 @@ _A tiny single class RAD PSR-7 web application "framework"_
 [![Stories in Ready](https://badge.waffle.io/abreksa4/Unicorn.png?label=ready&title=Ready)](http://waffle.io/abreksa4/Unicorn)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple of [The PHP League](https://thephpleague.com/) packages: [league/event](http://event.thephpleague.com/2.0/), [league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/).
+Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple of [The PHP League](https://thephpleague.com/) packages: [league/event](http://event.thephpleague.com/2.0/), [league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/) that provides support for the entire application lifecycle. 
 
 Still in it's infancy, Unicorn was born from my frustrations of wanting a framework to handle the plumbing for me, but not force a specific architecture or style, as applications tend to get very domain specific (as they should be).
 
 - Want to build a closure application? Easy. 
 - Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend 
-[league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object adds itself to the service container which are auto-wired if created via the container. I would include support for league/pipeline by default, but I feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
+[league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object adds itself to the service container so your class constructor dependencies are auto-wired if created via the container. I would include support for league/pipeline by default, but I feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
 
