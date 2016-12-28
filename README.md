@@ -3,7 +3,7 @@ _A tiny single class RAD PSR-7 web application "framework"_
 
 [![Build Status](https://travis-ci.org/abreksa4/Unicorn.svg?branch=master)](https://travis-ci.org/abreksa4/Unicorn)
 [![Stories in Ready](https://badge.waffle.io/abreksa4/Unicorn.png?label=ready&title=Ready)](http://waffle.io/abreksa4/Unicorn)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple of [The PHP League](https://thephpleague.com/) packages: [league/event](http://event.thephpleague.com/2.0/), [league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/).
 
