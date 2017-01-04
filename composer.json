@@ -25,11 +25,11 @@
   "scripts": {
     "serve-debug": "php -dxdebug.remote_autostart=On -S 0.0.0.0:88 -t public",
     "serve": "php -S 0.0.0.0:88 -t public",
-    "phpcs":"vendor\\bin\\php-cs-fixer.bat fix src && vendor\\bin\\php-cs-fixer.bat fix tests",
+    "psr2":"./vendor/bin/phpcbf --standard=PSR2 public src tests",
     "gen-docs":"phploc src --log-xml=docs/phploc.xml && phpdox"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7",
-    "friendsofphp/php-cs-fixer": "^2.0"
+    "squizlabs/php_codesniffer": "2.*"
   }
 }
