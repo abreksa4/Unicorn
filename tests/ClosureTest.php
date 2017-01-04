@@ -81,18 +81,18 @@ class AppTest extends PHPUnit_Framework_TestCase
         self::assertArrayHasKey('settings', self::$app->getConfig(), 'json config autoloading not functioning');
     }
 
-    public function testApplicationInContainer(){
-		$request = (new Zend\Diactoros\ServerRequest())
-			->withUri(new Zend\Diactoros\Uri('http://example.com/'))
-			->withMethod('GET');
-		$app = new AndrewBreksa\Unicorn\App\Application();
-		$app->bootstrap();
-		$app->setRequest($request);
-		self::assertTrue($app->getContainer()->has(AndrewBreksa\Unicorn\App\Application::class), 'Application object not available via the container');
-		$app2 = $app->getContainer()->get(AndrewBreksa\Unicorn\App\Application::class);
-		self::assertInstanceOf(\AndrewBreksa\Unicorn\App\Application::class, $app2, 'Application is not an Unicron\\App\\Application');
-
-	}
+    public function testApplicationInContainer()
+    {
+        $request = (new Zend\Diactoros\ServerRequest())
+            ->withUri(new Zend\Diactoros\Uri('http://example.com/'))
+            ->withMethod('GET');
+        $app = new AndrewBreksa\Unicorn\App\Application();
+        $app->bootstrap();
+        $app->setRequest($request);
+        self::assertTrue($app->getContainer()->has(AndrewBreksa\Unicorn\App\Application::class), 'Application object not available via the container');
+        $app2 = $app->getContainer()->get(AndrewBreksa\Unicorn\App\Application::class);
+        self::assertInstanceOf(\AndrewBreksa\Unicorn\App\Application::class, $app2, 'Application is not an Unicron\\App\\Application');
+    }
 
     public function testIndex()
     {
@@ -144,6 +144,6 @@ class AppTest extends PHPUnit_Framework_TestCase
             rmdir(__DIR__ . '/config/autoload');
             rmdir(__DIR__ . '/config');
         }
-        self::$app = NULL;
+        self::$app = null;
     }
 }

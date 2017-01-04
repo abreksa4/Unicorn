@@ -263,7 +263,11 @@ class Application implements ContainerInterface
     {
         $this->eventEmitter->emit(self::EVENT_BOOTSTRAP, $this);
         $this->request = \Zend\Diactoros\ServerRequestFactory::fromGlobals(
-            $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+            $_SERVER,
+            $_GET,
+            $_POST,
+            $_COOKIE,
+            $_FILES
         );
         $this->setResponse(new Response());
         $this->getContainer()->share('emitter', \Zend\Diactoros\Response\SapiEmitter::class);
