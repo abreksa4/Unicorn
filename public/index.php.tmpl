@@ -1,6 +1,11 @@
 <?php
 require_once(__DIR__ . '/../vendor/autoload.php');
-$app = \Unicorn\App\Application::getInstance();
+
+//create the App
+$app = new AndrewBreksa\Unicorn\App\Application();
 $app->bootstrap();
+
 //do your thing
+
+//run the app!
 $app->run();
