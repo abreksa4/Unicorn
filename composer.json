@@ -26,7 +26,7 @@
     "serve-debug": "php -dxdebug.remote_autostart=On -S 0.0.0.0:88 -t public",
     "serve": "php -S 0.0.0.0:88 -t public",
     "psr2":"./vendor/bin/phpcbf --standard=PSR2 public src tests",
-    "gen-docs":"phploc src --log-xml=docs/phploc.xml && phpdox"
+    "gen-docs":"phploc src --log-xml=phploc.xml && cp phploc.xml docs/phploc.xml && phpdox"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7",
