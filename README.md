@@ -1,9 +1,10 @@
 # [Unicorn](https://github.com/abreksa4/Unicorn)
 _A tiny single class RAD PSR-7 web application "framework"_
 
-[![Build Status](https://travis-ci.org/abreksa4/Unicorn.svg?branch=master)](https://travis-ci.org/abreksa4/Unicorn)
-[![Stories in Ready](https://badge.waffle.io/abreksa4/Unicorn.png?label=ready&title=Ready)](http://waffle.io/abreksa4/Unicorn)
+[![Travis](https://img.shields.io/travis/abreksa4/Unicorn.svg)](https://travis-ci.org/abreksa4/Unicorn)
+[![Waffle.io](https://img.shields.io/waffle/label/abreksa4/Unicorn/in%20progress.svg)](https://waffle.io/abreksa4/Unicorn)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Packagist](https://img.shields.io/packagist/dt/andrewbreksa/unicorn.svg)](https://packagist.org/packages/andrewbreksa/unicorn)
 
 Unicorn is essentially a wrapper around [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) and a couple of [The PHP League](https://thephpleague.com/) packages: [league/event](http://event.thephpleague.com/2.0/), [league/container](http://container.thephpleague.com/), and [league/route](http://route.thephpleague.com/) that provides support for the entire application lifecycle. 
 
@@ -11,7 +12,7 @@ Still in it's infancy, Unicorn was born from my frustrations of wanting a framew
 
 - Want to build a closure application? Easy. 
 - Want to build a PSR-7 middleware app? Use your own pipeline implementation. (I recommend 
-[league/pipeline](http://pipeline.thephpleague.com/). Remember, the `Application` object adds itself to the service container so your class constructor dependencies are auto-wired if created via the container. I would include support for league/pipeline by default, but I feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
+[league/pipeline](http://pipeline.thephpleague.com/) or [zend-framework/stratigility](https://zendframework.github.io/zend-stratigility/). Remember, the `Application` object adds itself to the service container so your class constructor dependencies are auto-wired if created via the container. I would include support for middleware by default, but I feel this is not always required by a PSR-7 application, and therefore outside of the Unicorn mission statement)
 - Want to use a "full", controller-based MVC framework? Just specify the class and method via routing.
 - Want to use all of the above in the same app? Go ahead. 
 
