@@ -170,8 +170,6 @@ class Application implements ContainerInterface
     }
 
     /**
-     * Don't call this directly. Instead, call Application::getInstance().
-     *
      * Application constructor.
      */
     public function __construct($basedir = null)
