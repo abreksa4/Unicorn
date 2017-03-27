@@ -8,5 +8,5 @@ php:
 matrix:
   allow_failures:
   - php: nightly
-install: composer install --no-dev
-script: phpunit
+install: composer install
+script: ./vendor/bin/phpunit
